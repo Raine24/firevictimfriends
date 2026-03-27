@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Victim Friends | Rekindling Hope</title>
+    <meta name="description" content="Support and relief to fire victims in Uganda.">
+    
+    <!-- Fonts: Lato (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lato:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Decorative Gradients Behind the App Wrapper -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="app-wrapper">
+        <!-- Modern Header -->
+        <header class="site-header reveal">
+            <a href="#" class="logo-container">
+                <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 50px; width: auto; display: block; background: transparent;">
+            </a>
+            
+            <nav class="header-nav">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#programs" class="nav-link">Our Projects</a>
+                <a href="#" class="nav-link">Social Enterprise</a>
+                <a href="#involved" class="nav-link">Volunteer</a>
+                <a href="#" class="nav-link">Blog</a>
+                <a href="#about" class="nav-link">About Us</a>
+                <a href="#" class="nav-link">Contact Us</a>
+            </nav>
+            
+            <div style="display:flex; gap: 8px;">
+                <a href="#donate" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">
+                    Donate <i class="ph-bold ph-heart"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- Dynamic Hero Section -->
+        <div class="container" style="padding-top: 80px;">
+            <div class="hero-wrapper" style="position: relative;">
+                <section class="hero reveal">
+                    <div class="hero-slider">
+                        <!-- Slide 1 -->
+                        <div class="hero-slide active">
+                            <img src="https://i.imgur.com/C4ffpDA.jpg" alt="Emergency Relief" class="hero-bg">
+                            <div class="hero-gradient"></div>
+                            <div class="hero-content">
+                                <div style="background:var(--color-primary-orange); display:inline-block; padding:8px 16px; border-radius:100px; font-weight:700; font-family:var(--font-heading); color:#FFF; margin-bottom: 24px;">
+                                    Rekindling Hope, Rebuilding lives
+                                </div>
+                                <h1 class="hero-title">Together, We Can<br>Transform Lives</h1>
+                                <p class="hero-subtitle">Fire victim friends is an organization established to provide support, relief and advocacy to fire victims in Uganda. Recognizing the devastating impact of fires on communities we aim to bridge the gap in emergency response, rehabilitation and reintegration.</p>
+                                <div style="display:flex; gap:16px; margin-top:32px;">
+                                    <a href="#donate" class="btn btn-primary">Donate Now</a>
+                                    <a href="#involved" class="btn btn-outline" style="border-color:rgba(255,255,255,0.5); color:white;">Get Involved <i class="ph-bold ph-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="hero-slide">
+                            <img src="https://i.imgur.com/4928Tff.jpg" alt="Prevention" class="hero-bg">
+                            <div class="hero-gradient"></div>
+                            <div class="hero-content">
+                                <div style="background:var(--color-primary-red); display:inline-block; padding:8px 16px; border-radius:100px; font-weight:700; font-family:var(--font-heading); color:#FFF; margin-bottom: 24px;">
+                                    Fire Prevention & Awareness
+                                </div>
+                                <h1 class="hero-title">Empowering Communities<br>Through Education</h1>
+                                <p class="hero-subtitle">Conducting vital fire safety workshops and equipping schools, homes, and markets against future tragedies to save lives before disaster strikes.</p>
+                                <div style="display:flex; gap:16px; margin-top:32px;">
+                                    <a href="#donate" class="btn btn-primary">Donate Now</a>
+                                    <a href="#involved" class="btn btn-outline" style="border-color:rgba(255,255,255,0.5); color:white;">Learn More <i class="ph-bold ph-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="hero-slide">
+                            <img src="https://i.imgur.com/upniMrK.jpg" alt="Rebuilding" class="hero-bg">
+                            <div class="hero-gradient"></div>
+                            <div class="hero-content">
+                                <div style="background:var(--color-teal); display:inline-block; padding:8px 16px; border-radius:100px; font-weight:700; font-family:var(--font-heading); color:#FFF; margin-bottom: 24px;">
+                                    Psychosocial Support
+                                </div>
+                                <h1 class="hero-title">Healing Trauma,<br>Rebuilding Lives</h1>
+                                <p class="hero-subtitle">Providing counseling, therapy, and peer support networks designed to help families and vulnerable children overcome the psychological devastation of fires.</p>
+                                <div style="display:flex; gap:16px; margin-top:32px;">
+                                    <a href="#donate" class="btn btn-primary">Donate Now</a>
+                                    <a href="#involved" class="btn btn-outline" style="border-color:rgba(255,255,255,0.5); color:white;">Learn More <i class="ph-bold ph-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Floating Donate Widget -->
+                <div class="floating-widget" id="donate">
+                    <div class="widget-tabs">
+                        <div class="widget-tab active">Give Once</div>
+                        <div class="widget-tab">Monthly</div>
+                    </div>
+                    <h3 style="font-size:1.25rem; margin-bottom:8px;">Donate to our cause</h3>
+                    <p style="font-size:0.85rem; margin-bottom:16px;">Your donation can help us essential support to fire victims including food, clothing and shelter. Consider making a recurring donation or one time gift to support our mission.</p>
+                    
+                    <div class="donation-amounts">
+                        <button class="amt-btn active">$10</button>
+                        <button class="amt-btn">$50</button>
+                        <button class="amt-btn">$100</button>
+                    </div>
+                    
+                    <button class="btn btn-primary" style="width: 100%;">Donate Custom Amount</button>
+                    <p style="text-align:center; font-size:0.75rem; color:var(--color-text-gray); margin-top:16px;">
+                        <i class="ph-fill ph-lock-key"></i> Secure and encrypted payment
+                    </p>
+                </div>
+            </div> <!-- End hero-wrapper -->
+            
+            <!-- About & Mission Section -->
+            <section class="section" style="padding-top: 260px;" id="about">
+                <div class="support-inline reveal" style="justify-content:center; text-align:center; position:relative; display:flex; flex-direction:column; align-items:center;">
+                    <h2 style="font-size:clamp(3rem, 5vw, 4rem); font-weight:900; letter-spacing:-0.03em; max-width:800px; margin:0 auto; line-height:1.1;">
+                        Our Journey of <span style="background: linear-gradient(135deg, var(--color-primary-orange), var(--color-primary-red)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Impact:</span><br>Transforming Lives
+                    </h2>
+                    <!-- Hand-drawn style arrow SVG positioned relatively off-center -->
+                    <svg class="drawn-arrow" viewBox="0 0 100 50" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" style="position:relative; margin-top:16px; transform:translateY(0) scale(1.2);">
+                        <path d="M5,25 Q50,-10 95,25 M80,10 L95,25 L80,40" />
+                    </svg>
+                </div>
+
+                <div class="bento-grid">
+                    <!-- Founder Story (Span 2) -->
+                    <div class="bento-card card-span-2 row-span-2 reveal" style="background:#f68d1b;">
+                        <h3 style="font-size: 2rem; margin-bottom: 16px; color:#000;">From Tragedy to Action</h3>
+                        <p style="margin-bottom: 24px; color:#000;">Our journey began when founder Muhereza Augustine witnessed a devastating fire ravage a school dormitory, leaving hundreds without belongings. This trauma sparked a deep empathy and a vow to extend a helping hand to fire victims, and so FVF was born. We are committed to providing immediate relief, long-term support, and advocating for fire prevention and safety.</p>
+                        <img src="https://i.imgur.com/TGIzqh8.jpg" alt="Students Help" style="border-radius:var(--radius-md); height: 180px; width: 100%; object-fit: cover;">
+                    </div>
+
+                    <!-- Mission Card -->
+                    <div class="bento-card stat-card blue reveal" style="transition-delay: 0.1s; padding: var(--space-lg);">
+                        <i class="ph-fill ph-target" style="font-size:2rem; margin-bottom:16px;"></i>
+                        <h4 style="font-size:1.5rem; margin-bottom:8px; color:#ffffff;">Our Mission</h4>
+                        <p style="color:rgba(255,255,255,0.9); font-size:1rem;">Fire victim friends (fvf) provides emotional support resources and relief to those affected by fires helping them rebuild their lives.</p>
+                    </div>
+
+                    <!-- Vision Card -->
+                    <div class="bento-card stat-card purple reveal" style="transition-delay: 0.2s; padding: var(--space-lg);">
+                        <i class="ph-fill ph-eye" style="font-size:2rem; margin-bottom:16px;"></i>
+                        <h4 style="font-size:1.5rem; margin-bottom:8px; color:#ffffff;">Our Vision</h4>
+                        <p style="color:rgba(255,255,255,0.9); font-size:1rem;">A world where fire victims receive compassionate support, empowering them to overcome tragedy and thrive.</p>
+                    </div>
+
+                    <!-- Values Card (Span 2) -->
+                    <div class="bento-card card-span-2 reveal" style="background:#F4F9FF; border:1px solid #E1EFFF; display:flex; flex-direction:column; justify-content:center;">
+                        <h3 style="font-size: 1.7rem; color:var(--color-primary-blue); margin-bottom: 16px;">Our Core Values</h3>
+                        <div style="display:flex; flex-wrap:wrap; gap:12px;">
+                            <span style="background:white; color:var(--color-primary-blue); padding:8px 16px; border-radius:100px; font-weight:600; font-size:0.9rem; box-shadow:0 2px 10px rgba(0,0,0,0.05);">Compassion</span>
+                            <span style="background:white; color:var(--color-primary-orange); padding:8px 16px; border-radius:100px; font-weight:600; font-size:0.9rem; box-shadow:0 2px 10px rgba(0,0,0,0.05);">Empathy</span>
+                            <span style="background:white; color:var(--color-lime); padding:8px 16px; border-radius:100px; font-weight:600; font-size:0.9rem; box-shadow:0 2px 10px rgba(0,0,0,0.05);">Support</span>
+                            <span style="background:white; color:var(--color-teal); padding:8px 16px; border-radius:100px; font-weight:600; font-size:0.9rem; box-shadow:0 2px 10px rgba(0,0,0,0.05);">Integrity</span>
+                            <span style="background:white; color:var(--color-primary-red); padding:8px 16px; border-radius:100px; font-weight:600; font-size:0.9rem; box-shadow:0 2px 10px rgba(0,0,0,0.05);">Community</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Programs & Work Section -->
+            <section class="section" id="programs" style="padding-top:0;">
+                <div class="support-inline reveal" style="margin-top:0; justify-content:center; text-align:center;">
+                    <h2 style="font-size:clamp(2.5rem, 4.5vw, 3.5rem); font-weight:900; letter-spacing:-0.03em; max-width:800px; margin:0 auto; line-height:1.1;">
+                        Our <span style="background: linear-gradient(135deg, var(--color-primary-blue), var(--color-teal)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Work:</span> 5 Main Programs
+                    </h2>
+                </div>
+                
+                <div class="bento-grid">
+                    <!-- Program 1: Emergency relief -->
+                    <div class="bento-card card-span-2 reveal" style="padding: 0; display:flex; flex-direction:column;">
+                        <img src="https://i.imgur.com/C4ffpDA.jpg" style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: var(--space-xl); display:flex; gap:16px; align-items:flex-start;">
+                            <div style="background:var(--color-primary-red); color:white; padding:16px; border-radius:16px;">
+                                <i class="ph-bold ph-first-aid-kit" style="font-size:2rem;"></i>
+                            </div>
+                            <div>
+                                <h3 style="font-size:1.5rem; margin-bottom:8px; color:var(--color-primary-red);">1. Emergency Relief and Support</h3>
+                                <p style="font-size:0.95rem; margin-bottom:12px; color:#000;"><strong>Objective:</strong> Provide immediate relief and support to fire victims in Uganda including food, shelter, clothing, financial and medical assistance.</p>
+                                <p style="font-size:0.85rem; margin-bottom:8px; color:#000;"><strong>Target Group:</strong> Fire victim in Uganda, affected in schools, homes, markets or vehicle fires.</p>
+                                <ul style="font-size:0.85rem; padding-left:16px; color:#000;">
+                                    <li>Distribute emergency relief supplies eg food, blankets and clothing</li>
+                                    <li>Provide medical assistance and psychological support</li>
+                                    <li>Offer temporary shelter and accomodation program</li>
+                                </ul>
+                                <a href="#" class="btn btn-outline" style="border-color:var(--color-primary-red); color:#000; margin-top:24px; border-width:2px; font-weight:700;">LEARN MORE</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 2: Fire prevention -->
+                    <div class="bento-card card-span-2 reveal" style="padding: 0; display:flex; flex-direction:column; transition-delay: 0.1s;">
+                        <img src="https://i.imgur.com/BBdbvI9.jpg" style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: var(--space-xl); display:flex; gap:16px; align-items:flex-start;">
+                            <div style="background:var(--color-primary-orange); color:white; padding:16px; border-radius:16px;">
+                                <i class="ph-bold ph-shield-warning" style="font-size:2rem;"></i>
+                            </div>
+                            <div>
+                                <h3 style="font-size:1.5rem; margin-bottom:8px; color:var(--color-primary-orange);">2. Fire Prevention and Awareness</h3>
+                                <p style="font-size:0.95rem; margin-bottom:12px; color:#000;"><strong>Objective:</strong> Raise awareness about fire prevention and safety measures in Uganda, particularly in schools, homes and markets.</p>
+                                <p style="font-size:0.85rem; margin-bottom:8px; color:#000;"><strong>Target Group:</strong> Communities, schools and market vendors in Uganda</p>
+                                <ul style="font-size:0.85rem; padding-left:16px; color:#000;">
+                                    <li>Conduct fire safety workshops and training sessions.</li>
+                                    <li>Distribute safety materials such as brochures and posters.</li>
+                                    <li>Organise community events and campaigns.</li>
+                                </ul>
+                                <a href="#" class="btn btn-outline" style="border-color:var(--color-primary-orange); color:#000; margin-top:24px; border-width:2px; font-weight:700;">LEARN MORE</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 3: Livelihood -->
+                    <div class="bento-card card-span-2 reveal" style="padding: 0; display:flex; flex-direction:column;">
+                        <img src="https://i.imgur.com/cbEAkJA.jpg" style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: var(--space-xl); display:flex; gap:16px; align-items:flex-start;">
+                            <div style="background:var(--color-lime); color:white; padding:16px; border-radius:16px;">
+                                <i class="ph-bold ph-briefcase" style="font-size:2rem;"></i>
+                            </div>
+                            <div>
+                                <h3 style="font-size:1.5rem; margin-bottom:8px; color:var(--color-lime);">3. Livelihood Support & Econ Dev</h3>
+                                <p style="font-size:0.95rem; margin-bottom:12px; color:#000;"><strong>Objective:</strong> Support fire victims in rebuilding their livehoods and achieving economic empowerment</p>
+                                <p style="font-size:0.85rem; margin-bottom:8px; color:#000;"><strong>Target Group:</strong> Fire victims who lost their business or livelihoods.</p>
+                                <ul style="font-size:0.85rem; padding-left:16px; color:#000;">
+                                    <li>Provide vocational training and business skills development</li>
+                                    <li>Offer microfinance and start up support for businesses</li>
+                                    <li>Provide tools and equipments for income generating activities.</li>
+                                </ul>
+                                <a href="#" class="btn btn-outline" style="border-color:var(--color-lime); color:#000; margin-top:24px; border-width:2px; font-weight:700;">LEARN MORE</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 4: Psychosocial -->
+                    <div class="bento-card card-span-2 reveal" style="padding: 0; display:flex; flex-direction:column; transition-delay: 0.1s;">
+                        <img src="https://i.imgur.com/TGIzqh8.jpg" style="width: 100%; height: 220px; object-fit: cover;">
+                        <div style="padding: var(--space-xl); display:flex; gap:16px; align-items:flex-start;">
+                            <div style="background:var(--color-teal); color:white; padding:16px; border-radius:16px;">
+                                <i class="ph-bold ph-heart" style="font-size:2rem;"></i>
+                            </div>
+                            <div>
+                                <h3 style="font-size:1.5rem; margin-bottom:8px; color:var(--color-teal);">4. Psychosocial Support & Trauma</h3>
+                                <p style="font-size:0.95rem; margin-bottom:12px; color:#000;">Healing fire victims particularly children and vulnerable populations.</p>
+                                <p style="font-size:0.85rem; margin-bottom:8px; color:#000;"><strong>Target Group:</strong> Fire victims who have experienced trauma and distress</p>
+                                <ul style="font-size:0.85rem; padding-left:16px; color:#000;">
+                                    <li>Conduct counseling and therapy sessions.</li>
+                                    <li>Organise support groups and peer-peer support networks</li>
+                                    <li>Provide play therapy and recreational activities for children.</li>
+                                </ul>
+                                <a href="#" class="btn btn-outline" style="border-color:var(--color-teal); color:#000; margin-top:24px; border-width:2px; font-weight:700;">LEARN MORE</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 5 & FsF Grant Funding -->
+                    <div class="bento-card card-span-4 impact-hero-card reveal" style="border-radius: var(--radius-2xl);">
+                        <div class="ih-content">
+                            <div class="program-pill" style="background:#fff; color:var(--color-primary-blue);">5. Safety Infrastructure & FsF Grant</div>
+                            <h3 style="font-size:2.2rem; margin-bottom:16px; color:#fff;">Fire safety infrastructure and equipment & FsF Grant Funding</h3>
+                            <p style="color:rgba(255,255,255,0.9); margin-bottom:12px;"><strong>Objective:</strong> Improve fire safety infrastructure and equipment in schools homes and markets in Uganda.</p>
+                            <ul style="color:rgba(255,255,255,0.9); font-size:0.95rem; padding-left:20px; margin-bottom:24px;">
+                                <li>Install fire alarms and suppression systems</li>
+                                <li>Provide fire extinguishers and other fire fighting equipments</li>
+                                <li>Conduct fire safety inspection and risks assessments.</li>
+                            </ul>
+                            <p style="background:#fff; color:#000; padding:16px; border-radius:12px; font-size:0.95rem;"><strong>NB: Adding FsF grant funding content:</strong> Our grant funding programs are set to offer financial assistance to victims re-entering the workforce and launching new startups. Apply today for livelihood rehabilitation.</p>
+                            <a href="#" class="btn btn-outline" style="border-color:var(--color-primary-blue); color:#000; background:#fff; margin-top:16px; border-width:2px; font-weight:700;">LEARN MORE</a>
+                        </div>
+                        <div class="ih-image">
+                            <!-- Needs a vertical image -->
+                            <img src="https://i.imgur.com/BBdbvI9.jpg" alt="Livelihood">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Get Involved Section -->
+            <section class="section" id="involved" style="padding-top:0;">
+                <div class="bento-grid">
+                    <div class="bento-card card-span-4 reveal" style="background:#8fc740; color:#000; padding:var(--space-2xl);">
+                        <div style="text-align:center; margin-bottom:32px;">
+                            <h2 style="font-size:3rem; margin-bottom:16px; color:#000;">Get Involved</h2>
+                            <p style="max-width:600px; margin:0 auto; color:#000; font-size:1.1rem;">At fvf we believe everyone deserves support and hope after a fire disaster. You can get involved through:</p>
+                        </div>
+                        
+                        <div class="get-involved-grid">
+                            <!-- Volunteer -->
+                            <div style="background:white; padding:24px; border-radius:16px; box-shadow:var(--shadow-soft);">
+                                <div class="icon-frame pulse-anim" style="background:var(--color-primary-blue); color:white;">
+                                    <i class="ph-bold ph-users" style="font-size:1.8rem;"></i>
+                                </div>
+                                <h4 style="font-size:1.25rem; margin-bottom:8px; color:var(--color-primary-blue);">Volunteer with us</h4>
+                                <p style="font-size:0.9rem; color:#000;">Join our team of dedicated volunteers who help us provide support to fire victims. Participate in our outreach programs and grant funding programs, fundraising events and disaster response efforts.</p>
+                            </div>
+                            
+                            <!-- Support Enterprises -->
+                            <div style="background:white; padding:24px; border-radius:16px; box-shadow:var(--shadow-soft);">
+                                <div class="icon-frame pulse-anim" style="background:var(--color-lime); color:white; animation-delay: 0.2s;">
+                                    <i class="ph-bold ph-shopping-cart" style="font-size:1.8rem;"></i>
+                                </div>
+                                <h4 style="font-size:1.25rem; margin-bottom:8px; color:var(--color-lime);">Support our social enterprises</h4>
+                                <p style="font-size:0.9rem; color:#000;">Supporting our fvf social enterprises helps us raise funds to help fire victims out there. Any purchase can make a great difference to fire victims.</p>
+                            </div>
+
+                            <!-- Spread the word -->
+                            <div style="background:white; padding:24px; border-radius:16px; box-shadow:var(--shadow-soft);">
+                                <div class="icon-frame pulse-anim" style="background:var(--color-primary-orange); color:white; animation-delay: 0.4s;">
+                                    <i class="ph-bold ph-megaphone" style="font-size:1.8rem;"></i>
+                                </div>
+                                <h4 style="font-size:1.25rem; margin-bottom:8px; color:var(--color-primary-orange);">Spread the word</h4>
+                                <p style="font-size:0.9rem; color:#000;">Share our story and mission to a friend and family. Help us raise awareness about the importance of supporting fire victims and work we do.</p>
+                            </div>
+
+                            <!-- Partner with us -->
+                            <div style="background:white; padding:24px; border-radius:16px; box-shadow:var(--shadow-soft);">
+                                <div class="icon-frame pulse-anim" style="background:var(--color-teal); color:white; animation-delay: 0.6s;">
+                                    <i class="ph-bold ph-handshake" style="font-size:1.8rem;"></i>
+                                </div>
+                                <h4 style="font-size:1.25rem; margin-bottom:8px; color:var(--color-teal);">Partner with us</h4>
+                                <p style="font-size:0.9rem; color:#000;">Consider partnering with us to support our mission and goals. We welcome opportunities to collaborate with organizations and individuals who share our vision.</p>
+                            </div>
+                        </div>
+
+                        <!-- Final Call to Action -->
+                        <div style="text-align:center; margin-top:48px; padding-top:40px; border-top:1px solid rgba(0,0,0,0.1);">
+                            <h3 style="font-size:2rem; margin-bottom:16px; color:#000;">Ready to make an impact?</h3>
+                            <p style="font-size:1.1rem; color:#000; margin-bottom:24px; max-width: 600px; margin-left: auto; margin-right: auto;">Join us in our mission to bring relief, rebuild lives, and protect communities from the devastation of fires.</p>
+                            <a href="#donate" class="btn btn-primary" style="font-size: 1.1rem; padding: 16px 32px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); background:var(--color-primary-blue); color:#fff; border:none;">GET INVOLVED TODAY <i class="ph-bold ph-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer & Additional Content -->
+            <footer class="footer-bento reveal" id="resources">
+                <div>
+                    <a href="#" class="logo-container" style="display:inline-flex; margin-bottom:24px; background: transparent; padding: 0;">
+                        <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 100px; width: auto; display: block; background: transparent;">
+                    </a>
+                    <p>Providing emotional support, resources, and relief to those affected by fires.</p>
+                </div>
+                <div>
+                    <h4>Organizations</h4>
+                    <ul style="list-style:none;">
+                        <li style="margin-bottom:12px;"><a href="#about">About FVF</a></li>
+                        <li style="margin-bottom:12px;"><a href="#programs">Our Mission Workspace</a></li>
+                        <li style="margin-bottom:12px;"><a href="#grant">FsF Grant Funding</a></li>
+                        <li style="margin-bottom:12px;"><a href="#">Partners, donors & supporters</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Resources</h4>
+                    <ul style="list-style:none;">
+                        <li style="margin-bottom:12px;"><a href="#">Blog (news, updates, tips)</a></li>
+                        <li style="margin-bottom:12px;"><a href="#">Downloadable Resources (guides)</a></li>
+                        <li style="margin-bottom:12px;"><a href="#">Testimonials & Feedback</a></li>
+                        <li style="margin-bottom:12px;"><a href="#">Gallery (Photos & Videos)</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Connect</h4>
+                    <ul style="list-style:none;">
+                        <li style="margin-bottom:12px;"><a href="#">FAQs (Answers to common questions)</a></li>
+                        <li style="margin-bottom:12px;"><a href="#">News (Press releases & media)</a></li>
+                        <li style="margin-bottom:12px;"><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="card-span-4" style="border-top:1px solid rgba(255,255,255,0.1); padding-top:24px; text-align:center; margin-top:16px;">
+                    <p>&copy; 2026 Fire Victim Friends NGO. <br>“Rekindling Hope, Rebuilding lives”</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <!-- Custom Interactions -->
+    <script src="js/main.js"></script>
+</body>
+</html>
