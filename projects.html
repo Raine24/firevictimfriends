@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work | Fire Victim Friends</title>
+    <meta name="description" content="Explore our main programs and projects designed to bring relief and support to fire victims in Uganda.">
+    
+    <!-- Fonts: Lato (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lato:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Specific Styles for Projects Page adding extra Dribbble-level polish */
+        .projects-hero {
+            padding: calc(var(--space-3xl) * 2) var(--space-xl) var(--space-3xl);
+            position: relative;
+            text-align: center;
+            border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+            background: linear-gradient(135deg, rgba(46, 49, 146, 0.05), rgba(0, 167, 157, 0.05));
+            margin-bottom: var(--space-xl);
+            overflow: hidden;
+        }
+
+        .projects-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://i.imgur.com/upniMrK.jpg') center/cover; /* Healing trauma bg */
+            opacity: 0.15;
+            z-index: -1;
+            filter: grayscale(50%) blur(4px);
+        }
+
+        .projects-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #FFF;
+            padding: 8px 24px;
+            border-radius: var(--radius-full);
+            color: var(--color-primary-blue);
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: var(--space-md);
+            border: 2px solid rgba(46, 49, 146, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .floating-pill {
+            position: absolute;
+            background: white;
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            box-shadow: var(--shadow-floating);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .fp-1 { top: 20%; left: 10%; color: var(--color-primary-orange); }
+        .fp-2 { bottom: 30%; right: 10%; color: var(--color-teal); animation-delay: -3s; }
+        .fp-3 { top: 40%; right: 15%; color: var(--color-primary-red); animation-delay: -1.5s; transform: scale(0.85); }
+
+        /* Project Card Special Hover Effects */
+        .project-card-interactive {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 400px;
+        }
+
+        .project-card-interactive .card-bg-img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-xl);
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
+        }
+
+        .project-card-interactive:hover .card-bg-img {
+            transform: scale(1.08); /* Zoom effect */
+        }
+
+        .project-card-interactive .p-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%);
+            border-radius: var(--radius-xl);
+            z-index: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card-interactive:hover .p-overlay {
+            opacity: 0.8;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 100%);
+        }
+
+        .p-content {
+            position: relative;
+            z-index: 2;
+            padding: var(--space-xl);
+            color: white;
+            transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card-interactive:hover .p-content {
+            transform: translateY(0);
+        }
+
+        .p-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .p-content h3 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .p-details {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.95rem;
+            color: #FFFFFF;
+        }
+
+        .p-details p, .p-details ul {
+            color: #FFFFFF !important;
+        }
+
+        .project-card-interactive:hover .p-details {
+            opacity: 1;
+            max-height: 200px; /* Expand reveal */
+            margin-top: 16px;
+        }
+
+        .p-details ul {
+            padding-left: 20px;
+            margin-top: 12px;
+            margin-bottom: 20px;
+        }
+
+        /* Mobile specific adjustments for projects page */
+        @media (max-width: 768px) {
+            .projects-hero {
+                padding: calc(var(--space-3xl) * 1.5) var(--space-md) var(--space-xl);
+            }
+            .floating-pill {
+                display: none; /* Hide floating elements on mobile */
+            }
+            .projects-hero h1 {
+                font-size: 2.5rem !important;
+            }
+            .project-card-interactive {
+                min-height: 350px;
+            }
+            .p-content {
+                transform: translateY(0);
+                padding: var(--space-lg);
+            }
+            .p-details {
+                opacity: 1;
+                max-height: none;
+                margin-top: 16px;
+            }
+            .project-card-interactive .p-overlay {
+                background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 100%);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Decorative Gradients -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="app-wrapper">
+        <!-- Modern Header -->
+        <header class="site-header reveal active">
+            <a href="index.html" class="logo-container">
+                <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 50px; width: auto; display: block; background: transparent;">
+            </a>
+            
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="projects.html" class="nav-link" style="color: var(--color-primary-orange);">Our Projects</a>
+                <a href="social-enterprise.html" class="nav-link">Social Enterprise</a>
+                <a href="volunteer.html" class="nav-link">Volunteer</a>
+                <a href="partnership.html" class="nav-link">Partnerships</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+            </nav>
+            
+            <div style="display:flex; gap: 8px;">
+                <a href="index.html#donate" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">
+                    Donate <i class="ph-bold ph-heart"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- Projects Hero Overview -->
+        <main style="padding-top: 20px;">
+            <div class="container">
+                <section class="projects-hero reveal">
+                    <!-- Floating aesthetic elements -->
+                    <div class="floating-pill fp-1 reveal"><i class="ph-fill ph-first-aid-kit"></i> Rapid Relief</div>
+                    <div class="floating-pill fp-2 reveal"><i class="ph-fill ph-plant"></i> Rebuilding Lives</div>
+                    <div class="floating-pill fp-3 reveal"><i class="ph-fill ph-shield-check"></i> Safety</div>
+
+                    <div style="max-width: 800px; margin: 0 auto; position: relative; z-index: 10;">
+                        <div class="projects-badge reveal">
+                            <i class="ph-bold ph-sparkle"></i> 5 Core Pillars
+                        </div>
+                        <h1 style="font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 900; margin-bottom: 24px; color: var(--color-primary-blue); line-height: 1.1;">
+                            Our Blueprint for <span style="background: linear-gradient(135deg, var(--color-primary-orange), var(--color-primary-red)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Impact.</span>
+                        </h1>
+                        <p style="font-size: 1.15rem; color: #444; max-width: 600px; margin: 0 auto;">
+                            We address catastrophic fire disasters through a comprehensive framework. Explore our primary programs that collectively save, protect, and rebuild the communities of Uganda.
+                        </p>
+                    </div>
+                </section>
+                
+                <!-- Awwwards-style Bento Grid for Programs -->
+                <section class="section" style="padding-top: var(--space-xl);">
+                    <div class="bento-grid">
+                        
+                        <!-- 1. Emergency Relief (Hero Span) -->
+                        <div class="bento-card card-span-2 row-span-2 project-card-interactive reveal" style="padding: 0;">
+                            <img src="https://i.imgur.com/C4ffpDA.jpg" class="card-bg-img" alt="Emergency Relief">
+                            <div class="p-overlay"></div>
+                            <div class="p-content">
+                                <span class="p-tag" style="background: rgba(237, 28, 36, 0.8);">1. Emergency Response</span>
+                                <h3>Emergency Relief and Support</h3>
+                                <div class="p-details">
+                                    <p><strong>Objective:</strong> Provide immediate and vital assistance to victims affected across schools, homes, and markets.</p>
+                                    <ul>
+                                        <li>Distribute emergency supplies: food, blankets & clothing</li>
+                                        <li>Provide immediate medical and psychological triage</li>
+                                        <li>Offer emergency temporary shelter & accommodation</li>
+                                    </ul>
+                                    <div style="display: flex; gap: 12px;">
+                                        <a href="emergency-relief.html" class="btn btn-outline" style="padding: 10px 24px; border-color: rgba(255,255,255,0.5); color: #fff;">Explore Program <i class="ph-bold ph-arrow-right"></i></a>
+                                        <a href="#donate" class="btn btn-primary" style="padding: 10px 24px;">Support Program</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. Fire Prevention -->
+                        <div class="bento-card card-span-2 project-card-interactive reveal" style="padding: 0; min-height: 350px;">
+                            <img src="https://i.imgur.com/BBdbvI9.jpg" class="card-bg-img" alt="Fire Prevention">
+                            <div class="p-overlay"></div>
+                            <div class="p-content">
+                                <span class="p-tag" style="background: rgba(247, 147, 30, 0.8); color: #000;">2. Education</span>
+                                <h3>Fire Prevention and Awareness</h3>
+                                <div class="p-details">
+                                    <p>Raising vital awareness about fire prevention and executing safety protocols in vulnerable environments.</p>
+                                    <ul>
+                                        <li>Conduct intensive fire safety workshops</li>
+                                        <li>Distribute community brochures and safety posters</li>
+                                    </ul>
+                                    <div style="display: flex; gap: 12px;">
+                                        <a href="fire-prevention.html" class="btn btn-outline" style="padding: 10px 24px; border-color: rgba(255,255,255,0.5); color: #fff;">Explore Program <i class="ph-bold ph-arrow-right"></i></a>
+                                        <a href="#donate" class="btn btn-primary" style="padding: 10px 24px; background: var(--color-primary-orange); color: #000; border-color: var(--color-primary-orange);">Support Program</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Livelihood -->
+                        <div class="bento-card project-card-interactive reveal" style="padding: 0; min-height: 350px;">
+                            <img src="https://i.imgur.com/cbEAkJA.jpg" class="card-bg-img" alt="Livelihood">
+                            <div class="p-overlay"></div>
+                            <div class="p-content">
+                                <span class="p-tag" style="background: rgba(140, 198, 63, 0.9); color: #000;">3. Empowerment</span>
+                                <h3 style="font-size: 1.5rem;">Livelihood Support</h3>
+                                <div class="p-details">
+                                    <p style="font-size: 0.85rem;">Vocational training, microfinance, and crucial startup tools for income recovery.</p>
+                                    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px;">
+                                        <a href="livelihood-support.html" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.85rem; border-color: rgba(255,255,255,0.5); color: #fff; width: 100%;">Explore Program <i class="ph-bold ph-arrow-right"></i></a>
+                                        <a href="#donate" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.85rem; background: #8CC63F; color: #000; border-color: #8CC63F; width: 100%;">Support Program</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Psychosocial Support -->
+                        <div class="bento-card project-card-interactive reveal" style="padding: 0; min-height: 350px;">
+                            <img src="https://i.imgur.com/TGIzqh8.jpg" class="card-bg-img" alt="Healing">
+                            <div class="p-overlay"></div>
+                            <div class="p-content">
+                                <span class="p-tag" style="background: rgba(0, 167, 157, 0.9);">4. Therapy</span>
+                                <h3 style="font-size: 1.5rem;">Trauma Recovery</h3>
+                                <div class="p-details">
+                                    <p style="font-size: 0.85rem;">Clinical therapy, peer support frameworks, and specialized child play therapy.</p>
+                                    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 12px;">
+                                        <a href="trauma-recovery.html" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.85rem; border-color: rgba(255,255,255,0.5); color: #fff; width: 100%;">Explore Program <i class="ph-bold ph-arrow-right"></i></a>
+                                        <a href="#donate" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.85rem; background: #00A79D; color: #fff; border-color: #00A79D; width: 100%;">Support Program</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5. Safety Infrastructure & FsF Giant Callout -->
+                        <div class="bento-card card-span-4 impact-hero-card reveal" style="border-radius: var(--radius-2xl);">
+                            <div class="ih-content">
+                                <div class="program-pill" style="background:#fff; color:var(--color-primary-blue);">5. Safety Infrastructure</div>
+                                <h3 style="font-size:2.2rem; margin-bottom:16px; color:#fff;">Infrastructure Reform & FsF Grant Funding</h3>
+                                <p style="color:rgba(255,255,255,0.9); margin-bottom:12px;"><strong>Objective:</strong> Systemic improvement of physical fire safety infrastructure across Uganda's critical buildings.</p>
+                                <ul style="color:rgba(255,255,255,0.9); font-size:0.95rem; padding-left:20px; margin-bottom:24px;">
+                                    <li>Installing modern fire alarms and active suppression systems.</li>
+                                    <li>Distributing fire extinguishers and safety grid equipment.</li>
+                                    <li>Conducting mandatory, state-compliant fire safety inspections.</li>
+                                </ul>
+                                <div style="background: rgba(255,255,255,0.1); border-left: 4px solid #fff; padding: 16px; border-radius: 0 12px 12px 0; margin-bottom: 24px;">
+                                    <p style="color: #fff; font-size:0.95rem; margin-bottom:0;">
+                                        <strong>The FsF Grant Initiative:</strong> Dedicated financial assistance structured to help victims systematically re-enter the workforce and rapidly establish highly critical new startup ventures for long-term viability. <a href="infrastructure-reform.html#fsf" style="text-decoration: underline; font-weight: bold;">Apply Today</a>.
+                                    </p>
+                                </div>
+                                <div style="display: flex; gap: 12px;">
+                                    <a href="infrastructure-reform.html" class="btn btn-outline" style="padding: 10px 24px; border-color: rgba(255,255,255,0.5); color: #fff;">Explore Initiative <i class="ph-bold ph-arrow-right"></i></a>
+                                    <a href="#donate" class="btn btn-primary" style="padding: 10px 24px; background: #fff; color: var(--color-primary-blue);">Support Funding</a>
+                                </div>
+                            </div>
+                            <div class="ih-image">
+                                <img src="https://i.imgur.com/4928Tff.jpg" alt="FsF Grant Program" style="filter: brightness(0.85);">
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+                
+                <!-- CTA Banner -->
+                <section class="section reveal" style="padding-top: 0;">
+                    <div style="background: var(--color-primary-orange); border-radius: var(--radius-2xl); padding: var(--space-3xl); text-align: center; position: relative; overflow: hidden; box-shadow: var(--shadow-hover);">
+                        <svg class="blob-1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="position: absolute; width: 400px; top: -50%; left: -10%; opacity: 0.1; filter: blur(0);">
+                            <path fill="#FFFFFF" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,81.3,-46.3C90.8,-33.5,96.8,-18,97.1,-2.3C97.4,13.4,92.1,29.3,82.4,42.4C72.7,55.5,58.6,65.8,43.2,74.1C27.8,82.4,11.1,88.7,-5.7,90.4C-22.5,92.1,-39.3,89.3,-53.4,79.8C-67.5,70.3,-78.9,54.1,-86.3,36.5C-93.7,18.9,-97.1,-0.1,-93.8,-18.2C-90.5,-36.3,-80.5,-53.5,-66.2,-64.8C-51.9,-76.1,-33.3,-81.5,-16.2,-84.3C0.9,-87.1,18.1,-87.3,30.6,-83.6L44.7,-76.4Z" transform="translate(100 100)" />
+                        </svg>
+                        <div style="position: relative; z-index: 2;">
+                            <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: #1E1E1E; margin-bottom: 16px;">See A Program You Can Support?</h2>
+                            <p style="font-size: 1.1rem; color: #1E1E1E; max-width: 600px; margin: 0 auto 32px;">Every contribution directly fuels these life-saving relief pillars and infrastructure reforms.</p>
+                            <a href="index.html#donate" class="btn btn-outline" style="border-width: 2px; border-color: #1E1E1E; color: #1E1E1E; font-size: 1.1rem;">Make an Impact <i class="ph-bold ph-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Awwwards-Level Premium Footer -->
+        <div class="container" style="margin-bottom: var(--space-2xl); padding-bottom: var(--space-xl);">
+            <footer class="premium-footer reveal" id="resources">
+                
+                <!-- Mega Typography CTA -->
+                <div class="footer-mega-cta">
+                    <h2>Ready to build<br>impactful futures?</h2>
+                    <a href="index.html#donate" class="btn btn-primary" style="padding: 16px 32px; font-size: 1.1rem; flex-shrink: 0;">Make an Impact <i class="ph-bold ph-arrow-right"></i></a>
+                </div>
+
+                <!-- Main Content Grid -->
+                <div class="footer-main-grid">
+                    <!-- Brand Column -->
+                    <div class="footer-brand">
+                        <a href="index.html" class="logo-container" style="display:inline-flex; margin-bottom:24px; background: transparent; padding: 0;">
+                            <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 100px; width: auto; display: block; background: transparent;">
+                        </a>
+                        <p>Providing emotional support, vital resources, and crisis relief to those affected by fires across Uganda.</p>
+                        
+                        <div class="footer-socials">
+                            <a href="#" aria-label="Twitter"><i class="ph-fill ph-twitter-logo"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="ph-fill ph-instagram-logo"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="ph-fill ph-linkedin-logo"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="ph-fill ph-facebook-logo"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Navigation 1 -->
+                    <div class="footer-links">
+                        <h4>Explore Platform</h4>
+                        <ul>
+                            <li><a href="about.html">About FVF</a></li>
+                            <li><a href="projects.html" class="active">Our Mission</a></li>
+                            <li><a href="index.html#grant">FsF Grant Funding</a></li>
+                            <li><a href="partnership.html">Partners & Donors</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Navigation 2 -->
+                    <div class="footer-links">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Latest News</a></li>
+                            <li><a href="#">Impact Reports</a></li>
+                            <li><a href="#">Gallery & Media</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter Column -->
+                    <div class="footer-links">
+                        <h4>Stay Updated</h4>
+                        <p style="color: #fff; font-size: 0.95rem; margin-bottom: 0;">Join our community newsletter for impact stories and urgent initiatives.</p>
+                        <form class="nl-form" onsubmit="event.preventDefault();">
+                            <input type="email" class="nl-input" placeholder="Enter your email address" required>
+                            <button type="submit" class="nl-submit" aria-label="Subscribe"><i class="ph-bold ph-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sub Footer -->
+                <div class="footer-bottom">
+                    <div>&copy; 2026 Fire Victim Friends NGO. "Rekindling Hope, Rebuilding lives"</div>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Back to Top <i class="ph-bold ph-caret-up"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <!-- Custom Interactions -->
+    <script src="js/main.js"></script>
+</body>
+</html>

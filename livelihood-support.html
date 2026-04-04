@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livelihood Support Program | Fire Victim Friends</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lato:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .projects-hero {
+            padding: calc(var(--space-3xl) * 2) var(--space-xl) var(--space-3xl);
+            position: relative;
+            text-align: center;
+            border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+            background: linear-gradient(135deg, rgba(140, 198, 63, 0.05), rgba(0, 167, 157, 0.05));
+            overflow: hidden;
+        }
+
+        .projects-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://i.imgur.com/cbEAkJA.jpg') center/cover;
+            opacity: 0.15;
+            z-index: -1;
+            filter: grayscale(50%) blur(4px);
+        }
+        
+        .floating-pill {
+            position: absolute;
+            background: white;
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            box-shadow: var(--shadow-floating);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Fast Facts Grid */
+        .bento-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            margin-bottom: 0;
+            transform: translateY(-50px);
+            position: relative;
+            z-index: 20;
+        }
+        @media (max-width: 1024px) {
+            .bento-grid-3 { grid-template-columns: repeat(2, 1fr); transform: translateY(-30px); }
+        }
+        @media (max-width: 768px) {
+            .bento-grid-3 { grid-template-columns: 1fr; transform: translateY(0); margin-top: 20px;}
+        }
+
+        .fast-facts {
+            padding: var(--space-lg);
+            background: #fff;
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-hover);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .fast-facts-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            border-radius: var(--radius-full);
+            flex-shrink: 0;
+        }
+
+        /* Staggered Narrative Rules */
+        .staggered-row {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: var(--space-4xl);
+            align-items: center;
+            margin-bottom: 80px;
+        }
+        .staggered-row.reverse {
+            grid-template-columns: 0.9fr 1.1fr;
+        }
+        .staggered-row.reverse .stagger-content {
+            grid-column: 1;
+            grid-row: 1;
+        }
+        .staggered-row.reverse .stagger-image {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        @media (max-width: 992px) {
+            .staggered-row, .staggered-row.reverse {
+                grid-template-columns: 1fr !important;
+                gap: var(--space-2xl);
+                margin-bottom: 48px;
+            }
+            .staggered-row.reverse .stagger-content { grid-row: 2; grid-column: 1 !important; }
+            .staggered-row.reverse .stagger-image { grid-row: 1; grid-column: 1 !important; }
+        }
+
+        .stagger-image img {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        }
+
+        .stagger-content h3 {
+            font-size: 2.5rem;
+            color: var(--color-primary-blue);
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+        .stagger-content p {
+            font-size: 1.1rem;
+            color: #000;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        .stagger-content ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 24px;
+        }
+        .stagger-content ul li {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .stagger-content ul li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #8CC63F; /* Livelihood Green */
+            font-size: 1.2rem;
+        }
+
+        /* Metrics Box */
+        .metric-box {
+            text-align: center;
+            padding: var(--space-xl);
+            background: #fff;
+            border-radius: var(--radius-2xl);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .metric-box h4 { font-size: 3.5rem; font-weight: 900; color: #8CC63F; margin-bottom: 8px; line-height: 1; }
+        .metric-box p { font-size: 1.1rem; font-weight: 600; color: #000; margin: 0; text-transform: uppercase; }
+
+        /* Pure Green CTA (Livelihood Theme) */
+        .pure-green-cta {
+            background: #8CC63F;
+            border-radius: var(--radius-2xl);
+            padding: 100px 40px;
+            text-align: center;
+            box-shadow: 0 40px 80px rgba(140, 198, 63, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .pure-green-cta::before {
+            content: '';
+            position: absolute; top: -50%; left: -10%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+        }
+        .pure-glass-box {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: var(--radius-xl);
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .floating-pill { display: none !important; }
+            .fast-facts { flex-direction: column; text-align: center; gap: 16px; padding: var(--space-md); }
+            .staggered-row, .staggered-row.reverse { gap: var(--space-lg) !important; margin-bottom: 48px !important; }
+            .projects-hero { padding: var(--space-2xl) var(--space-sm) var(--space-lg); }
+            .projects-hero h1 { font-size: clamp(2.2rem, 8vw, 2.8rem) !important; margin-bottom: 16px; }
+            .projects-hero p { font-size: 1rem !important; padding: 0 16px; }
+            .stagger-image img { height: 280px; border-radius: var(--radius-xl); }
+            .stagger-content h3 { font-size: 1.8rem; }
+            .stagger-content p { font-size: 1rem; }
+            .metric-box { padding: var(--space-md); }
+            .metric-box h4 { font-size: 2.5rem; }
+            .pure-green-cta { padding: 40px 16px; border-radius: var(--radius-xl); }
+            .pure-glass-box { padding: 24px 16px; border-radius: var(--radius-md); }
+            .pure-glass-box h2 { font-size: 2rem !important; margin-bottom: 12px; }
+            .pure-glass-box p { font-size: 1rem !important; }
+            .pure-glass-box a.btn { font-size: 0.95rem !important; padding: 16px 20px; width: 100%; justify-content: center; }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <!-- Decorative Gradients -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="app-wrapper">
+        <!-- Modern Site Header -->
+        <header class="site-header reveal active" style="transition: all 0.3s ease;">
+            <a href="index.html" class="logo-container">
+                <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 50px; width: auto; display: block; background: transparent;">
+            </a>
+            
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="projects.html" class="nav-link" style="color: var(--color-primary-orange);">Our Projects</a>
+                <a href="social-enterprise.html" class="nav-link">Social Enterprise</a>
+                <a href="volunteer.html" class="nav-link">Volunteer</a>
+                <a href="partnership.html" class="nav-link">Partnerships</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+            </nav>
+            
+            <div style="display:flex; gap: 8px;">
+                <a href="index.html#donate" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">
+                    Donate <i class="ph-bold ph-heart"></i>
+                </a>
+            </div>
+        </header>
+
+        <main style="padding-top: 20px;">
+            <div class="container">
+                <!-- Premium Program Hero -->
+                <section class="projects-hero reveal">
+                    <!-- Floating aesthetic elements -->
+                    <div class="floating-pill fp-1 reveal" style="top: 20%; left: 10%; color: #8CC63F;"><i class="ph-fill ph-plant"></i> Microfinance Grants</div>
+                    <div class="floating-pill fp-2 reveal" style="bottom: 30%; right: 10%; color: var(--color-primary-blue); animation-delay: -3s;"><i class="ph-fill ph-wrench"></i> Trade Tools</div>
+                    <div class="floating-pill fp-3 reveal" style="top: 40%; right: 15%; color: var(--color-primary-orange); animation-delay: -1.5s; transform: scale(0.85);"><i class="ph-fill ph-storefront"></i> Business Restoration</div>
+
+                    <div style="max-width: 800px; margin: 0 auto; position: relative; z-index: 10;">
+                        <div class="projects-badge reveal" style="display: inline-flex; align-items: center; gap: 8px; background: #FFF; padding: 8px 24px; border-radius: var(--radius-full); color: #8CC63F; font-weight: 700; font-size: 0.95rem; box-shadow: var(--shadow-soft); margin-bottom: var(--space-md); border: 2px solid rgba(140, 198, 63, 0.2); text-transform: uppercase;">
+                            <i class="ph-bold ph-handshake"></i> 03. Empowerment
+                        </div>
+                        <h1 style="font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 900; margin-bottom: 24px; color: var(--color-primary-blue); line-height: 1.1;">
+                            Rebuilding More Than <span style="background: linear-gradient(135deg, #8CC63F, #00A79D); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Structures.</span>
+                        </h1>
+                        <p style="font-size: 1.15rem; color: #000; max-width: 600px; margin: 0 auto;">
+                            A fire doesn't just destroy homes; it obliterates entire livelihoods overnight. We provide the capital, trade tools, and strategic training required to transition victims from crisis directly back into lasting economic independence.
+                        </p>
+                    </div>
+                </section>
+                
+                <!-- Fast Facts (Extracted Overlap) -->
+                <div class="bento-grid-3">
+                    <div class="bento-card fast-facts reveal">
+                        <div class="fast-facts-icon" style="background: rgba(140, 198, 63, 0.1); color: #8CC63F;">
+                            <i class="ph-fill ph-money" style="font-size: 2.2rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.5rem; margin-bottom: 4px; color: #000; font-weight: 800;">Seed Grants</h4>
+                            <p style="color: #000; font-size: 0.9rem; margin: 0;">Zero-interest capital drops.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card fast-facts reveal" style="transition-delay: 0.1s;">
+                        <div class="fast-facts-icon" style="background: rgba(0, 167, 157, 0.1); color: var(--color-teal);">
+                            <i class="ph-fill ph-student" style="font-size: 2.2rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.5rem; margin-bottom: 4px; color: #000; font-weight: 800;">Retraining</h4>
+                            <p style="color: #000; font-size: 0.9rem; margin: 0;">Vocational mentorship access.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card fast-facts reveal" style="transition-delay: 0.2s;">
+                        <div class="fast-facts-icon" style="background: rgba(247, 147, 30, 0.1); color: var(--color-primary-orange);">
+                            <i class="ph-fill ph-wrench" style="font-size: 2.2rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.5rem; margin-bottom: 4px; color: #000; font-weight: 800;">Trade Assets</h4>
+                            <p style="color: #000; font-size: 0.9rem; margin: 0;">Replacing lost tools.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deep Editorial Staggered Layout -->
+                <section class="section" style="padding-top: var(--space-2xl);">
+                    
+                    <!-- Row 1 -->
+                    <div class="staggered-row reveal">
+                        <div class="stagger-image">
+                            <!-- Placeholder representing capital or rebuilding business -->
+                            <img src="https://i.imgur.com/cbEAkJA.jpg" alt="Business and Trade Tools" style="object-position: center 30%;">
+                        </div>
+                        <div class="stagger-content">
+                            <span class="p-tag" style="background: rgba(140, 198, 63, 0.1); color: #8CC63F; padding: 8px 16px; border-radius: 100px; font-weight: 800; font-size: 0.9rem; margin-bottom: 20px; display: inline-block;">PHASE 01: ASSESSMENT</span>
+                            <h3>Tool & Asset Replacement</h3>
+                            <p>Income generation simply cannot restart without the fundamental tools of the trade. For mechanics, sewers, vendors, and craftsmen, the loss of basic equipment represents the total collapse of their business.</p>
+                            <p>The first tangible step in economic recovery is replacing exactly what was lost, so individuals can immediately reenter the market and produce. We work with individuals to source heavy machinery, specialized hand tools, and essential raw materials.</p>
+                            <ul>
+                                <li>Direct sourcing of specialized commercial equipment.</li>
+                                <li>Provision of startup inventory for retail and market vendors.</li>
+                                <li>Restoration of agricultural elements where relevant.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 (Reversed) -->
+                    <div class="staggered-row reverse reveal">
+                        <div class="stagger-content">
+                            <span class="p-tag" style="background: rgba(0, 167, 157, 0.1); color: var(--color-teal); padding: 8px 16px; border-radius: 100px; font-weight: 800; font-size: 0.9rem; margin-bottom: 20px; display: inline-block;">PHASE 02: MICROFINANCE</span>
+                            <h3>Accessible Seed Capital</h3>
+                            <p>We completely circumvent traditional bureaucratic barriers to capital by providing localized micro-grants directly into the hands of affected business owners. Traditional banks turn away disaster victims; we lean into them.</p>
+                            <p>This immediate liquidity ensures families do not fall into predatory debt spirals post-disaster, allowing them to legally secure commercial space and rapidly scale back to pre-fire profitability levels.</p>
+                            <ul>
+                                <li>Fast-tracked zero-interest startup loans and grants.</li>
+                                <li>Financial literacy training to guarantee responsible reinvestment.</li>
+                                <li>Direct payments to landlords and commercial property owners.</li>
+                            </ul>
+                        </div>
+                        <div class="stagger-image">
+                            <!-- Representative placeholder image -->
+                            <img src="https://i.imgur.com/upniMrK.jpg" alt="Distribution of Capital and Support">
+                        </div>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="staggered-row reveal">
+                        <div class="stagger-image">
+                            <!-- Representative placeholder image -->
+                            <img src="https://i.imgur.com/TGIzqh8.jpg" alt="Vocational Mentorship session">
+                        </div>
+                        <div class="stagger-content">
+                            <span class="p-tag" style="background: rgba(247, 147, 30, 0.1); color: var(--color-primary-orange); padding: 8px 16px; border-radius: 100px; font-weight: 800; font-size: 0.9rem; margin-bottom: 20px; display: inline-block;">PHASE 03: GROWTH</span>
+                            <h3>Vocational Retraining</h3>
+                            <p>For individuals whose entire industries were permanently decimated by fires—or whose physical capabilities have drastically changed—we provide comprehensive and compassionate vocational retraining programs.</p>
+                            <p>We actively partner with established local business leaders and trade academies to offer hands-on mentorship, ensuring these individuals emerge into a stable foundation for a totally new and lucrative career path.</p>
+                            <ul>
+                                <li>Enrollment into certified technical and trade programs.</li>
+                                <li>1-on-1 mentorship pairings with local enterprise owners.</li>
+                                <li>Long-term strategic guidance for business expansion.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Impact Metrics Array -->
+                <section class="section" style="padding-top: 0; padding-bottom: var(--space-2xl);">
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <h3 style="font-size: 2.2rem; color: var(--color-primary-blue);">By The Numbers</h3>
+                        <p style="color: #000; font-size: 1.1rem;">Empowering communities requires heavy lifting and significant resource allocation.</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-lg);">
+                        <div class="metric-box reveal">
+                            <h4>3,500+</h4>
+                            <p>Businesses Saved</p>
+                        </div>
+                        <div class="metric-box reveal" style="transition-delay: 0.1s;">
+                            <h4 style="color: var(--color-teal);">$2M+</h4>
+                            <p>In Disbursed Capital</p>
+                        </div>
+                        <div class="metric-box reveal" style="transition-delay: 0.2s;">
+                            <h4 style="color: var(--color-primary-orange);">92%</h4>
+                            <p>Success Rate</p>
+                        </div>
+                        <div class="metric-box reveal" style="transition-delay: 0.3s;">
+                            <h4 style="color: var(--color-primary-blue);">10,000</h4>
+                            <p>Tools Replaced</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pure Brutalist Green CTA -->
+                <section class="section reveal" style="padding-top: 0; padding-bottom: var(--space-2xl);">
+                    <div class="pure-green-cta">
+                        <div class="pure-glass-box">
+                            <h2 style="font-size: 3rem; font-weight: 900; color: #000; line-height: 1.1; margin-bottom: 16px; text-transform: uppercase;">Finance The<br>Rebuild.</h2>
+                            <p style="color: #000; font-size: 1.15rem; margin-bottom: 32px; font-weight: 500;">
+                                Independence must be actively funded. Give families the critical seed capital and trade tools they legitimately need to become self-sufficient pioneers once again.
+                            </p>
+                            <a href="index.html#donate" class="btn" style="background: #000; color: #8CC63F; padding: 20px 40px; font-size: 1.25rem; font-weight: 900; border-radius: var(--radius-full); display: inline-flex; align-items: center; gap: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);">
+                                RESTORE A BUSINESS <i class="ph-bold ph-lightning"></i>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+            </div> <!-- END CONTAINER -->
+        </main>
+
+        <!-- Awwwards-Level Premium Footer -->
+        <div class="container" style="margin-bottom: var(--space-2xl); padding-bottom: var(--space-xl);">
+            <footer class="premium-footer reveal" id="resources">
+                
+                <!-- Mega Typography CTA -->
+                <div class="footer-mega-cta">
+                    <h2>Ready to build<br>impactful futures?</h2>
+                    <a href="index.html#donate" class="btn btn-primary" style="padding: 16px 32px; font-size: 1.1rem; flex-shrink: 0;">Make an Impact <i class="ph-bold ph-arrow-right"></i></a>
+                </div>
+
+                <!-- Main Content Grid -->
+                <div class="footer-main-grid">
+                    <!-- Brand Column -->
+                    <div class="footer-brand">
+                        <a href="index.html" class="logo-container" style="display:inline-flex; margin-bottom:24px; background: transparent; padding: 0;">
+                            <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 100px; width: auto; display: block; background: transparent;">
+                        </a>
+                        <p>Providing emotional support, vital resources, and crisis relief to those affected by fires across Uganda.</p>
+                        
+                        <div class="footer-socials">
+                            <a href="#" aria-label="Twitter"><i class="ph-fill ph-twitter-logo"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="ph-fill ph-instagram-logo"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="ph-fill ph-linkedin-logo"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="ph-fill ph-facebook-logo"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Navigation 1 -->
+                    <div class="footer-links">
+                        <h4>Explore Platform</h4>
+                        <ul>
+                            <li><a href="about.html">About FVF</a></li>
+                            <li><a href="projects.html">Our Mission</a></li>
+                            <li><a href="index.html#grant">FsF Grant Funding</a></li>
+                            <li><a href="partnership.html">Partners & Donors</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Navigation 2 -->
+                    <div class="footer-links">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Latest News</a></li>
+                            <li><a href="#">Impact Reports</a></li>
+                            <li><a href="#">Gallery & Media</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter Column -->
+                    <div class="footer-links">
+                        <h4>Stay Updated</h4>
+                        <p style="color: #fff; font-size: 0.95rem; margin-bottom: 0;">Join our community newsletter for impact stories and urgent initiatives.</p>
+                        <form class="nl-form" onsubmit="event.preventDefault();">
+                            <input type="email" class="nl-input" placeholder="Enter your email address" required>
+                            <button type="submit" class="nl-submit" aria-label="Subscribe"><i class="ph-bold ph-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sub Footer -->
+                <div class="footer-bottom">
+                    <div>&copy; 2026 Fire Victim Friends NGO. "Rekindling Hope, Rebuilding lives"</div>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Back to Top <i class="ph-bold ph-caret-up"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+    </div> <!-- End app-wrapper -->
+
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Prevention & Awareness Program | Fire Victim Friends</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lato:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .projects-hero {
+            padding: calc(var(--space-3xl) * 2) var(--space-xl) var(--space-3xl);
+            position: relative;
+            text-align: center;
+            border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+            background: linear-gradient(135deg, rgba(247, 147, 30, 0.05), rgba(140, 198, 63, 0.05));
+            overflow: hidden;
+        }
+
+        .projects-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://i.imgur.com/BBdbvI9.jpg') center/cover;
+            opacity: 0.15;
+            z-index: -1;
+            filter: grayscale(50%) blur(4px);
+        }
+        
+        .floating-pill {
+            position: absolute;
+            background: white;
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            box-shadow: var(--shadow-floating);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Fast Facts Grid */
+        .bento-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            margin-bottom: 0;
+            transform: translateY(-50px);
+            position: relative;
+            z-index: 20;
+        }
+        @media (max-width: 1024px) {
+            .bento-grid-3 { grid-template-columns: repeat(2, 1fr); transform: translateY(-30px); }
+        }
+        @media (max-width: 768px) {
+            .bento-grid-3 { grid-template-columns: 1fr; transform: translateY(0); margin-top: 20px;}
+        }
+
+        .fast-facts {
+            padding: var(--space-lg);
+            background: #fff;
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-hover);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .fast-facts-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            border-radius: var(--radius-full);
+            flex-shrink: 0;
+        }
+
+        /* Staggered Narrative Rules */
+        .staggered-row {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: var(--space-4xl);
+            align-items: center;
+            margin-bottom: 80px;
+        }
+        .staggered-row.reverse {
+            grid-template-columns: 0.9fr 1.1fr;
+        }
+        .staggered-row.reverse .stagger-content {
+            grid-column: 1;
+            grid-row: 1;
+        }
+        .staggered-row.reverse .stagger-image {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        @media (max-width: 992px) {
+            .staggered-row, .staggered-row.reverse {
+                grid-template-columns: 1fr !important;
+                gap: var(--space-2xl);
+                margin-bottom: 48px;
+            }
+            .staggered-row.reverse .stagger-content { grid-row: 2; grid-column: 1 !important; }
+            .staggered-row.reverse .stagger-image { grid-row: 1; grid-column: 1 !important; }
+        }
+
+        .stagger-image img {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        }
+
+        .stagger-content h3 {
+            font-size: 2.5rem;
+            color: var(--color-primary-blue);
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+        .stagger-content p {
+            font-size: 1.1rem;
+            color: #000;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        .stagger-content ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 24px;
+        }
+        .stagger-content ul li {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .stagger-content ul li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--color-primary-orange);
+            font-size: 1.2rem;
+        }
+
+        /* Metrics Box */
+        .metric-box {
+            text-align: center;
+            padding: var(--space-xl);
+            background: #fff;
+            border-radius: var(--radius-2xl);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .metric-box h4 { font-size: 3.5rem; font-weight: 900; color: var(--color-primary-orange); margin-bottom: 8px; line-height: 1; }
+        .metric-box p { font-size: 1.1rem; font-weight: 600; color: #000; margin: 0; text-transform: uppercase; }
+
+        /* Pure Red CTA (Adapted for warning/education theme) */
+        .pure-orange-cta {
+            background: var(--color-primary-orange);
+            border-radius: var(--radius-2xl);
+            padding: 100px 40px;
+            text-align: center;
+            box-shadow: 0 40px 80px rgba(247, 147, 30, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .pure-orange-cta::before {
+            content: '';
+            position: absolute; top: -50%; left: -10%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+        }
+        .pure-glass-box {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: var(--radius-xl);
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .floating-pill { display: none !important; }
+            .fast-facts { flex-direction: column; text-align: center; gap: 16px; padding: var(--space-md); }
+            .staggered-row, .staggered-row.reverse { gap: var(--space-lg) !important; margin-bottom: 48px !important; }
+            .projects-hero { padding: var(--space-2xl) var(--space-sm) var(--space-lg); }
+            .projects-hero h1 { font-size: clamp(2.2rem, 8vw, 2.8rem) !important; margin-bottom: 16px; }
+            .projects-hero p { font-size: 1rem !important; padding: 0 16px; }
+            .stagger-image img { height: 280px; border-radius: var(--radius-xl); }
+            .stagger-content h3 { font-size: 1.8rem; }
+            .stagger-content p { font-size: 1rem; }
+            .metric-box { padding: var(--space-md); }
+            .metric-box h4 { font-size: 2.5rem; }
+            .pure-orange-cta { padding: 40px 16px; border-radius: var(--radius-xl); }
+            .pure-glass-box { padding: 24px 16px; border-radius: var(--radius-md); }
+            .pure-glass-box h2 { font-size: 2rem !important; margin-bottom: 12px; }
+            .pure-glass-box p { font-size: 1rem !important; }
+            .pure-glass-box a.btn { font-size: 0.95rem !important; padding: 16px 20px; width: 100%; justify-content: center; }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <!-- Decorative Gradients -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="app-wrapper">
+        <!-- Modern Site Header -->
+        <header class="site-header reveal active" style="transition: all 0.3s ease;">
+            <a href="index.html" class="logo-container">
+                <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 50px; width: auto; display: block; background: transparent;">
+            </a>
+            
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="projects.html" class="nav-link" style="color: var(--color-primary-orange);">Our Projects</a>
+                <a href="social-enterprise.html" class="nav-link">Social Enterprise</a>
+                <a href="volunteer.html" class="nav-link">Volunteer</a>
+                <a href="partnership.html" class="nav-link">Partnerships</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+            </nav>
+            
+            <div style="display:flex; gap: 8px;">
+                <a href="index.html#donate" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">
+                    Donate <i class="ph-bold ph-heart"></i>
+                </a>
+            </div>
+        </header>
+
+        <main style="padding-top: 20px;">
+            <div class="container">
+                <!-- Premium Program Hero -->
+                <section class="projects-hero reveal">
+                    <!-- Floating aesthetic elements -->
+                    <div class="floating-pill fp-1 reveal" style="top: 20%; left: 10%; color: var(--color-primary-orange);"><i class="ph-fill ph-chalkboard-teacher"></i> Community Education</div>
+                    <div class="floating-pill fp-2 reveal" style="bottom: 30%; right: 10%; color: var(--color-teal); animation-delay: -3s;"><i class="ph-fill ph-shield-check"></i> Safety Protocols</div>
+                    <div class="floating-pill fp-3 reveal" style="top: 40%; right: 15%; color: var(--color-primary-red); animation-delay: -1.5s; transform: scale(0.85);"><i class="ph-fill ph-warning-circle"></i> Risk Mitigation</div>
+
+                    <div style="max-width: 800px; margin: 0 auto; position: relative; z-index: 10;">
+                        <div class="projects-badge reveal" style="display: inline-flex; align-items: center; gap: 8px; background: #FFF; padding: 8px 24px; border-radius: var(--radius-full); color: var(--color-primary-orange); font-weight: 700; font-size: 0.95rem; box-shadow: var(--shadow-soft); margin-bottom: var(--space-md); border: 2px solid rgba(247, 147, 30, 0.1); text-transform: uppercase;">
+                            <i class="ph-bold ph-shield"></i> 02. Education & Prevention
+                        </div>
+                        <h1 style="font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 900; margin-bottom: 24px; color: var(--color-primary-blue); line-height: 1.1;">
+                            Stop Disasters Before They <span style="background: linear-gradient(135deg, var(--color-primary-orange), var(--color-primary-red)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Ignite.</span>
+                        </h1>
+                        <p style="font-size: 1.15rem; color: #000; max-width: 600px; margin: 0 auto;">
+                            While disaster response is crucial, the ultimate fight against catastrophic fires begins with deep-rooted education. We empower vulnerable communities with knowledge, resources, and actionable safety protocols to prevent fires proactively.
+                        </p>
+                    </div>
+                </section>
+                
+                <!-- Fast Facts (Extracted Overlap) -->
+                <div class="bento-grid-3">
+                    <div class="bento-card fast-facts reveal">
+                        <div class="fast-facts-icon" style="background: rgba(247, 147, 30, 0.1); color: var(--color-primary-orange);">
+                            <i class="ph-fill ph-chalkboard" style="font-size: 2.2rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.5rem; margin-bottom: 4px; color: #000; font-weight: 800;">500+ Workshops</h4>
+                            <p style="color: #000; font-size: 0.9rem; margin: 0;">Hosted in high-risk zones.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card fast-facts reveal" style="transition-delay: 0.1s;">
+                        <div class="fast-facts-icon" style="background: rgba(0, 167, 157, 0.1); color: var(--color-teal);">
+                            <i class="ph-fill ph-shield-check" style="font-size: 2.2rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.5rem; margin-bottom: 4px; color: #000; font-weight: 800;">Active Safety</h4>
+                            <p style="color: #000; font-size: 0.9rem; margin: 0;">Comprehensive protocol drilling.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card fast-facts reveal" style="transition-delay: 0.2s;">
+                        <div class="fast-facts-icon" style="background: rgba(237, 28, 36, 0.1); color: var(--color-primary-red);">
+                            <i class="ph-fill ph-books" style="font-size: 2.2rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.5rem; margin-bottom: 4px; color: #000; font-weight: 800;">Free Materials</h4>
+                            <p style="color: #000; font-size: 0.9rem; margin: 0;">Safety brochures and localized guides.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deep Editorial Staggered Layout -->
+                <section class="section" style="padding-top: var(--space-2xl);">
+                    
+                    <!-- Row 1 -->
+                    <div class="staggered-row reveal">
+                        <div class="stagger-image">
+                            <img src="https://i.imgur.com/BBdbvI9.jpg" alt="Community Fire Safety Workshop" style="object-position: center 20%;">
+                        </div>
+                        <div class="stagger-content">
+                            <span class="p-tag" style="background: rgba(247, 147, 30, 0.1); color: var(--color-primary-orange); padding: 8px 16px; border-radius: 100px; font-weight: 800; font-size: 0.9rem; margin-bottom: 20px; display: inline-block;">PHASE 01: AWARENESS</span>
+                            <h3>Intensive Safety Workshops</h3>
+                            <p>Fire outbreaks in densely populated, vulnerable environments often originate from a fundamental lack of awareness combined with unsafe daily domestic practices. Our preventative model disrupts this cycle through education.</p>
+                            <p>We deploy heavily trained instructors straight into communities, schools, and marketplaces to conduct interactive workshops that resonate with the realities of the local environment. We train community leaders to serve as permanent localized watchdogs.</p>
+                            <ul>
+                                <li>Hazard identification in congested domestic areas.</li>
+                                <li>Electrical and cooking fire prevention techniques.</li>
+                                <li>Customized training for school administrators and local authorities.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 (Reversed) -->
+                    <div class="staggered-row reverse reveal">
+                        <div class="stagger-content">
+                            <span class="p-tag" style="background: rgba(0, 167, 157, 0.1); color: var(--color-teal); padding: 8px 16px; border-radius: 100px; font-weight: 800; font-size: 0.9rem; margin-bottom: 20px; display: inline-block;">PHASE 02: PROTOCOLS</span>
+                            <h3>Establishing Emergency Protocols</h3>
+                            <p>Simple conceptual knowledge fails entirely under the immense psychological stress of a live fire. Knowledge must be reinforced with actionable, drilled muscle memory to successfully save lives when catastrophe strikes.</p>
+                            <p>Our program works alongside local leadership to mandate and practice institutional emergency action plans. We systematize escape routes and evacuation drilling so that panic is replaced by immediate, coordinated action.</p>
+                            <ul>
+                                <li>Systematic evacuation mapping for schools and markets.</li>
+                                <li>Live-action response drills with community leaders.</li>
+                                <li>Establishment of clear, designated emergency assembly zones.</li>
+                            </ul>
+                        </div>
+                        <div class="stagger-image">
+                            <img src="https://i.imgur.com/4928Tff.jpg" alt="Safety Infrastucture Planning">
+                        </div>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="staggered-row reveal">
+                        <div class="stagger-image">
+                            <!-- Using a placeholder related to learning/materials -->
+                            <img src="https://i.imgur.com/C4ffpDA.jpg" alt="Distributing Awareness Materials">
+                        </div>
+                        <div class="stagger-content">
+                            <span class="p-tag" style="background: rgba(237, 28, 36, 0.1); color: var(--color-primary-red); padding: 8px 16px; border-radius: 100px; font-weight: 800; font-size: 0.9rem; margin-bottom: 20px; display: inline-block;">PHASE 03: EMPOWERMENT</span>
+                            <h3>Accessible Safety Literature</h3>
+                            <p>For awareness to have a permanent, lasting effect, information must remain continuously accessible long after our workshops have concluded. Visual reminders are a crucial component of structural risk reduction.</p>
+                            <p>We actively fund, print, and distribute highly visual, easy-to-understand safety brochures, posters, and standardized stickers entirely localized into regional dialects for maximum comprehension across all demographics.</p>
+                            <ul>
+                                <li>Highly graphic community posters warning against open flames.</li>
+                                <li>Emergency contact and procedure stickers for households.</li>
+                                <li>Localized educational booklets directly integrated into school curriculums.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Impact Metrics Array -->
+                <section class="section" style="padding-top: 0; padding-bottom: var(--space-2xl);">
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <h3 style="font-size: 2.2rem; color: var(--color-primary-blue);">By The Numbers</h3>
+                        <p style="color: #000; font-size: 1.1rem;">A testament to the power of preemptive education and consistent training.</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-lg);">
+                        <div class="metric-box reveal">
+                            <h4>85%</h4>
+                            <p>Reduced Risk Rates</p>
+                        </div>
+                        <div class="metric-box reveal" style="transition-delay: 0.1s;">
+                            <h4 style="color: var(--color-teal);">15,000+</h4>
+                            <p>Materials Given</p>
+                        </div>
+                        <div class="metric-box reveal" style="transition-delay: 0.2s;">
+                            <h4 style="color: var(--color-primary-orange);">200+</h4>
+                            <p>Community Leaders</p>
+                        </div>
+                        <div class="metric-box reveal" style="transition-delay: 0.3s;">
+                            <h4 style="color: var(--color-primary-blue);">100%</h4>
+                            <p>Proactive Commitment</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pure Brutalist Orange CTA -->
+                <section class="section reveal" style="padding-top: 0; padding-bottom: var(--space-2xl);">
+                    <div class="pure-orange-cta">
+                        <div class="pure-glass-box">
+                            <h2 style="font-size: 3rem; font-weight: 900; color: #000; line-height: 1.1; margin-bottom: 16px; text-transform: uppercase;">Prevention Saves<br>Generations.</h2>
+                            <p style="color: #000; font-size: 1.15rem; margin-bottom: 32px; font-weight: 500;">
+                                Stop waiting for tragedy to strike. Equip communities with the preemptive education and crucial planning resources necessary to secure their futures today.
+                            </p>
+                            <a href="index.html#donate" class="btn" style="background: var(--color-primary-orange); color: #000; padding: 20px 40px; font-size: 1.25rem; font-weight: 900; border-radius: var(--radius-full); display: inline-flex; align-items: center; gap: 12px; box-shadow: 0 10px 30px rgba(247, 147, 30, 0.4);">
+                                FUND EDUCATION NOW <i class="ph-bold ph-lightning"></i>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+            </div> <!-- END CONTAINER -->
+        </main>
+
+        <!-- Awwwards-Level Premium Footer -->
+        <div class="container" style="margin-bottom: var(--space-2xl); padding-bottom: var(--space-xl);">
+            <footer class="premium-footer reveal" id="resources">
+                
+                <!-- Mega Typography CTA -->
+                <div class="footer-mega-cta">
+                    <h2>Ready to build<br>impactful futures?</h2>
+                    <a href="index.html#donate" class="btn btn-primary" style="padding: 16px 32px; font-size: 1.1rem; flex-shrink: 0;">Make an Impact <i class="ph-bold ph-arrow-right"></i></a>
+                </div>
+
+                <!-- Main Content Grid -->
+                <div class="footer-main-grid">
+                    <!-- Brand Column -->
+                    <div class="footer-brand">
+                        <a href="index.html" class="logo-container" style="display:inline-flex; margin-bottom:24px; background: transparent; padding: 0;">
+                            <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 100px; width: auto; display: block; background: transparent;">
+                        </a>
+                        <p>Providing emotional support, vital resources, and crisis relief to those affected by fires across Uganda.</p>
+                        
+                        <div class="footer-socials">
+                            <a href="#" aria-label="Twitter"><i class="ph-fill ph-twitter-logo"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="ph-fill ph-instagram-logo"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="ph-fill ph-linkedin-logo"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="ph-fill ph-facebook-logo"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Navigation 1 -->
+                    <div class="footer-links">
+                        <h4>Explore Platform</h4>
+                        <ul>
+                            <li><a href="about.html">About FVF</a></li>
+                            <li><a href="projects.html">Our Mission</a></li>
+                            <li><a href="index.html#grant">FsF Grant Funding</a></li>
+                            <li><a href="partnership.html">Partners & Donors</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Navigation 2 -->
+                    <div class="footer-links">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Latest News</a></li>
+                            <li><a href="#">Impact Reports</a></li>
+                            <li><a href="#">Gallery & Media</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter Column -->
+                    <div class="footer-links">
+                        <h4>Stay Updated</h4>
+                        <p style="color: #fff; font-size: 0.95rem; margin-bottom: 0;">Join our community newsletter for impact stories and urgent initiatives.</p>
+                        <form class="nl-form" onsubmit="event.preventDefault();">
+                            <input type="email" class="nl-input" placeholder="Enter your email address" required>
+                            <button type="submit" class="nl-submit" aria-label="Subscribe"><i class="ph-bold ph-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sub Footer -->
+                <div class="footer-bottom">
+                    <div>&copy; 2026 Fire Victim Friends NGO. "Rekindling Hope, Rebuilding lives"</div>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Back to Top <i class="ph-bold ph-caret-up"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+    </div> <!-- End app-wrapper -->
+
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
