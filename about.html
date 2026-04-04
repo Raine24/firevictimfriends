@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Fire Victim Friends</title>
+    <meta name="description" content="Discover the story, mission, and core values that drive Fire Victim Friends to rekindle hope in Uganda.">
+    
+    <!-- Fonts: Lato (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lato:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* Luxury Minimalist Styles for About Us Page */
+        .luxury-hero {
+            position: relative;
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            margin-bottom: var(--space-3xl);
+            padding: var(--space-3xl) var(--space-2xl);
+            background: #000;
+        }
+
+        .luxury-hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.55;
+            transition: transform 10s ease;
+        }
+
+        .luxury-hero:hover .luxury-hero-bg {
+            transform: scale(1.05);
+        }
+
+        .luxury-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        /* Pure Editorial Grid */
+        .editorial-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3xl);
+            align-items: center;
+            margin-bottom: var(--space-3xl);
+        }
+
+        .editorial-text {
+            padding-right: var(--space-xl);
+        }
+
+        .editorial-text p {
+            color: #111 !important; /* Perfect high-contrast reading */
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        .editorial-image-box {
+            position: relative;
+            z-index: 1;
+        }
+
+        .editorial-image-box img {
+            border-radius: var(--radius-2xl);
+            width: 100%;
+            height: 650px;
+            object-fit: cover;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.06);
+        }
+
+        .values-marquee {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: var(--space-xl);
+        }
+
+        .value-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #FFF;
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            color: #1E1E1E;
+            font-weight: 600;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .value-pill i {
+            font-size: 1.3rem;
+        }
+
+        .value-pill.v-compassion i { color: var(--color-primary-red); }
+        .value-pill.v-empathy i { color: var(--color-primary-blue); }
+        .value-pill.v-support i { color: var(--color-lime); }
+        .value-pill.v-integrity i { color: var(--color-teal); }
+        .value-pill.v-community i { color: var(--color-primary-orange); }
+
+        .value-pill:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+        }
+
+        .mv-card {
+            background: var(--color-primary-blue);
+            padding: var(--space-2xl);
+            border-radius: var(--radius-2xl);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 380px;
+        }
+        
+        .mv-card.vision {
+            background: var(--color-teal);
+        }
+
+        .mv-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-floating);
+        }
+
+        .mv-card h3 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .mv-card p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.15rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .mv-icon-bg {
+            position: absolute;
+            right: -20px;
+            bottom: -30px;
+            font-size: 16rem;
+            opacity: 0.05;
+            z-index: 1;
+            transform: rotate(-15deg);
+            transition: transform 0.6s ease;
+        }
+
+        .mv-card:hover .mv-icon-bg {
+            transform: rotate(0) scale(1.1);
+            opacity: 0.08;
+        }
+
+        @media (max-width: 992px) {
+            .editorial-split {
+                grid-template-columns: 1fr;
+            }
+            .editorial-text {
+                padding-right: 0;
+            }
+            .editorial-image-box img {
+                height: 400px;
+            }
+            .mission-vision-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .luxury-hero {
+                min-height: auto;
+                padding: calc(var(--space-3xl) * 1.5) var(--space-md) var(--space-xl);
+            }
+            .mv-card {
+                padding: var(--space-xl);
+                min-height: auto;
+            }
+            .mv-card h3 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Decorative Gradients -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2" style="background: rgba(46, 49, 146, 0.08); bottom: auto; top: 30%; right: -10%;"></div>
+
+    <div class="app-wrapper">
+        <!-- Modern Header -->
+        <header class="site-header reveal active">
+            <a href="index.html" class="logo-container">
+                <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 50px; width: auto; display: block; background: transparent;">
+            </a>
+            
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="projects.html" class="nav-link">Our Projects</a>
+                <a href="social-enterprise.html" class="nav-link">Social Enterprise</a>
+                <a href="volunteer.html" class="nav-link">Volunteer</a>
+                <a href="partnership.html" class="nav-link">Partnerships</a>
+                <a href="about.html" class="nav-link" style="color: var(--color-primary-orange);">About Us</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+            </nav>
+            
+            <div style="display:flex; gap: 8px;">
+                <a href="index.html#donate" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">
+                    Donate <i class="ph-bold ph-heart"></i>
+                </a>
+            </div>
+        </header>
+
+        <main style="padding-top: 100px;">
+            <div class="container">
+                <!-- Pristine Luxury Hero -->
+                <section class="luxury-hero reveal">
+                    <img src="https://i.imgur.com/C4ffpDA.jpg" class="luxury-hero-bg" alt="Emergency Relief Hero Background">
+                    <div class="luxury-hero-content">
+                        <p style="text-transform: uppercase; letter-spacing: 4px; color: #FFF; font-weight: 600; font-size: 0.85rem; margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 8px; display: inline-block;">
+                            Discover Our Roots
+                        </p>
+                        <h1 style="font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 900; margin-bottom: 24px; color: #FFF; line-height: 1.05;">
+                            From Tragedy<br>to Action.
+                        </h1>
+                        <p style="font-size: 1.25rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0; font-weight: 300;">
+                            We turned a devastating moment of loss into a beacon of hope, rebuilding communities and restoring futures across Uganda.
+                        </p>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Absolute Minimalist Editorial Story -->
+            <section class="section" style="padding-top: 0;">
+                <div class="container editorial-split">
+                    <div class="editorial-text reveal">
+                        <h2 style="font-size: clamp(2.5rem, 4vw, 3.2rem); margin-bottom: 40px; color: #111; font-weight: 300; line-height: 1.15; letter-spacing: -1px;">
+                            The spark that ignited <br>
+                            <span style="font-weight: 900; background: linear-gradient(135deg, var(--color-primary-orange), var(--color-primary-red)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">a movement.</span>
+                        </h2>
+                        <p>
+                            Our journey began under the darkest of circumstances when our founder, Muhereza Augustine, witnessed a devastating fire ravage a local school dormitory. In a matter of minutes, hundreds of vulnerable children were left without belongings, traumatized, and deeply displaced.
+                        </p>
+                        <p>
+                            This harrowing trauma sparked an overwhelming sense of empathy and a profound vow to extend a helping hand to fire victims across the nation. Fire Victim Friends (FVF) was born out of the ashes—established specifically to provide support, relief, and advocacy to victims in Uganda.
+                        </p>
+                        <p>
+                            Recognizing the uniquely devastating impact that sudden fires have on deeply interconnected communities, we aim to bridge the critical gap in emergency response, comprehensive rehabilitation, and successful reintegration into society.
+                        </p>
+                    </div>
+                    <div class="editorial-image-box reveal" style="transition-delay: 0.2s;">
+                        <img src="https://i.imgur.com/TGIzqh8.jpg" alt="Students helping each other">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission & Vision 3D Bento Layout -->
+            <section class="section" style="background: rgba(0,174,239, 0.03);">
+                <div class="container">
+                    <div class="text-center" style="text-align: center; margin-bottom: var(--space-2xl);">
+                        <h2 style="font-size: 3rem; font-weight: 800; color: #000;">Our True North</h2>
+                    </div>
+
+                    <div class="mission-vision-grid">
+                        <div class="mv-card reveal">
+                            <i class="ph-fill ph-target mv-icon-bg"></i>
+                            <h3>Our Mission</h3>
+                            <p>Fire Victim Friends (FVF) provides foundational emotional support, specialized resources, and immediate relief to those devastatingly affected by fires, helping them entirely rebuild their livelihoods and sanity.</p>
+                        </div>
+                        
+                        <div class="mv-card vision reveal" style="transition-delay: 0.15s;">
+                            <i class="ph-fill ph-eye mv-icon-bg"></i>
+                            <h3>Our Vision</h3>
+                            <p>A resilient world where fire victims securely receive prompt, compassionate support; a world empowering them to overcome unpredictable tragedy and ultimately thrive beyond measure.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Core Values Interactive Orbit -->
+            <section class="section">
+                <div class="container">
+                    <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                        <h2 style="font-size: 2.5rem; color: #000; margin-bottom: 16px;">The Core Values We Uphold</h2>
+                        <p style="font-size: 1.1rem; margin-bottom: 40px;">These five pillars dictate every engagement, every relief operation, and every interaction we have with the community.</p>
+
+                        <div class="values-marquee reveal">
+                            <div class="value-pill v-compassion"><i class="ph-bold ph-heart"></i> Compassion</div>
+                            <div class="value-pill v-empathy"><i class="ph-bold ph-users"></i> Empathy</div>
+                            <div class="value-pill v-support"><i class="ph-bold ph-hands-clapping"></i> Support</div>
+                            <div class="value-pill v-integrity"><i class="ph-bold ph-shield-check"></i> Integrity</div>
+                            <div class="value-pill v-community"><i class="ph-bold ph-globe-hemisphere-east"></i> Community</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Transition Banner -->
+            <section class="section reveal" style="padding-top: 0; padding-bottom: var(--space-3xl);">
+                <div class="container">
+                    <div style="background: #1E1E1E; border-radius: var(--radius-2xl); padding: var(--space-3xl); text-align: center; position: relative; overflow: hidden; box-shadow: var(--shadow-hover);">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="position: absolute; width: 500px; bottom: -50%; right: -10%; opacity: 0.05; filter: blur(0);">
+                            <path fill="#FFFFFF" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,81.3,-46.3C90.8,-33.5,96.8,-18,97.1,-2.3C97.4,13.4,92.1,29.3,82.4,42.4C72.7,55.5,58.6,65.8,43.2,74.1C27.8,82.4,11.1,88.7,-5.7,90.4C-22.5,92.1,-39.3,89.3,-53.4,79.8C-67.5,70.3,-78.9,54.1,-86.3,36.5C-93.7,18.9,-97.1,-0.1,-93.8,-18.2C-90.5,-36.3,-80.5,-53.5,-66.2,-64.8C-51.9,-76.1,-33.3,-81.5,-16.2,-84.3C0.9,-87.1,18.1,-87.3,30.6,-83.6L44.7,-76.4Z" transform="translate(100 100)" />
+                        </svg>
+                        <div style="position: relative; z-index: 2;">
+                            <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: #FFF; margin-bottom: 24px;">Be part of our story.</h2>
+                            <p style="font-size: 1.15rem; color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto 40px;">Whether it's through volunteering, partnering with our social enterprises, or donating, you can help reshape the ending for families that have lost everything.</p>
+                            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                                <a href="index.html#donate" class="btn btn-primary" style="font-size: 1.1rem;">Donate Now <i class="ph-bold ph-heart"></i></a>
+                                <a href="index.html#involved" class="btn btn-outline" style="border-width: 2px; border-color: #FFF; color: #FFF; font-size: 1.1rem;">Become a Volunteer <i class="ph-bold ph-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Awwwards-Level Premium Footer -->
+        <div class="container" style="margin-bottom: var(--space-2xl); padding-bottom: var(--space-xl);">
+            <footer class="premium-footer reveal" id="resources">
+                
+                <!-- Mega Typography CTA -->
+                <div class="footer-mega-cta">
+                    <h2>Ready to build<br>impactful futures?</h2>
+                    <a href="index.html#donate" class="btn btn-primary" style="padding: 16px 32px; font-size: 1.1rem; flex-shrink: 0;">Make an Impact <i class="ph-bold ph-arrow-right"></i></a>
+                </div>
+
+                <!-- Main Content Grid -->
+                <div class="footer-main-grid">
+                    <!-- Brand Column -->
+                    <div class="footer-brand">
+                        <a href="index.html" class="logo-container" style="display:inline-flex; margin-bottom:24px; background: transparent; padding: 0;">
+                            <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 100px; width: auto; display: block; background: transparent;">
+                        </a>
+                        <p>Providing emotional support, vital resources, and crisis relief to those affected by fires across Uganda.</p>
+                        
+                        <div class="footer-socials">
+                            <a href="#" aria-label="Twitter"><i class="ph-fill ph-twitter-logo"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="ph-fill ph-instagram-logo"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="ph-fill ph-linkedin-logo"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="ph-fill ph-facebook-logo"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Navigation 1 -->
+                    <div class="footer-links">
+                        <h4>Explore Platform</h4>
+                        <ul>
+                            <li><a href="about.html" class="active">About FVF</a></li>
+                            <li><a href="projects.html">Our Mission</a></li>
+                            <li><a href="index.html#grant">FsF Grant Funding</a></li>
+                            <li><a href="partnership.html">Partners & Donors</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Navigation 2 -->
+                    <div class="footer-links">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Latest News</a></li>
+                            <li><a href="#">Impact Reports</a></li>
+                            <li><a href="#">Gallery & Media</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter Column -->
+                    <div class="footer-links">
+                        <h4>Stay Updated</h4>
+                        <p style="color: #fff; font-size: 0.95rem; margin-bottom: 0;">Join our community newsletter for impact stories and urgent initiatives.</p>
+                        <form class="nl-form" onsubmit="event.preventDefault();">
+                            <input type="email" class="nl-input" placeholder="Enter your email address" required>
+                            <button type="submit" class="nl-submit" aria-label="Subscribe"><i class="ph-bold ph-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sub Footer -->
+                <div class="footer-bottom">
+                    <div>&copy; 2026 Fire Victim Friends NGO. "Rekindling Hope, Rebuilding lives"</div>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Back to Top <i class="ph-bold ph-caret-up"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <!-- Custom Interactions -->
+    <script src="js/main.js"></script>
+</body>
+</html>

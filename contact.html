@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Fire Victim Friends</title>
+    <meta name="description" content="Get in touch with Fire Victim Friends to coordinate relief, explore grant opportunities, or volunteer.">
+    
+    <!-- Fonts: Lato (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lato:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* Reverted to unified brand aesthetic: Refined Bento Grid Contact layout */
+        
+        .contact-hero {
+            padding: calc(var(--space-3xl) * 2) var(--space-xl) var(--space-xl);
+            position: relative;
+        }
+
+        .contact-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3xl);
+            align-items: start;
+            margin-bottom: var(--space-3xl);
+        }
+
+        .contact-headings h1 {
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: #1E1E1E;
+            margin-bottom: 24px;
+        }
+
+        .contact-headings p {
+            font-size: 1.15rem;
+            color: #444;
+            max-width: 500px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .contact-card-bento {
+            background: #FFF;
+            border-radius: var(--radius-2xl);
+            padding: var(--space-3xl);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05); /* Premium soft shadow matching site brand */
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Luxury Minimalist Hero Styles */
+        .luxury-hero {
+            position: relative;
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            margin-bottom: var(--space-3xl);
+            padding: var(--space-3xl) var(--space-2xl);
+            background: #000;
+        }
+
+        .luxury-hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.55;
+            transition: transform 10s ease;
+        }
+
+        .luxury-hero:hover .luxury-hero-bg {
+            transform: scale(1.05);
+        }
+
+        .luxury-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .contact-card-bento::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--color-primary-orange), var(--color-primary-red));
+        }
+
+        /* Form elements matching simple brand style */
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1E1E1E;
+            font-size: 0.95rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(0,0,0,0.1);
+            background: #F9F9F9;
+            font-family: inherit;
+            font-size: 1rem;
+            color: #111;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-primary-orange);
+            background: #FFF;
+            box-shadow: 0 4px 15px rgba(247, 147, 30, 0.1);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Standard Bento Cards for Info */
+        .info-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: var(--space-xl);
+            background: #FFF;
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.3s ease;
+            height: 100%;
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-floating);
+        }
+
+        .ic-icon {
+            font-size: 2rem;
+            color: var(--color-primary-blue);
+            background: rgba(46, 49, 146, 0.05);
+            padding: 12px;
+            border-radius: var(--radius-lg);
+        }
+
+        .ic-icon.orange {
+            color: var(--color-primary-orange);
+            background: rgba(247, 147, 30, 0.1);
+        }
+
+        .ic-icon.teal {
+            color: var(--color-teal);
+            background: rgba(0, 167, 157, 0.1);
+        }
+
+        .info-card h4 {
+            font-size: 1.25rem;
+            color: #1E1E1E;
+            margin-bottom: 8px;
+        }
+
+        .info-card p, .info-card a {
+            color: var(--color-text-gray);
+            font-size: 1.05rem;
+            line-height: 1.5;
+            text-decoration: none;
+        }
+
+        .info-card a {
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .info-card a:hover {
+            color: var(--color-primary-orange);
+        }
+        
+        /* Vibrant Brand Colored Info Cards */
+        .info-card.blue { background: var(--color-primary-blue); border: none; }
+        .info-card.orange { background: var(--color-primary-orange); border: none; }
+        .info-card.teal { background: var(--color-teal); border: none; }
+        
+        .info-card.blue h4, .info-card.orange h4, .info-card.teal h4,
+        .info-card.blue p, .info-card.orange p, .info-card.teal p,
+        .info-card.blue a, .info-card.orange a, .info-card.teal a {
+            color: #FFF;
+        }
+
+        .info-card.blue .ic-icon, .info-card.orange .ic-icon, .info-card.teal .ic-icon {
+            color: #FFF;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .info-card.blue a:hover, .info-card.orange a:hover, .info-card.teal a:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Large Map Bento */
+        .map-wrapper {
+            margin-top: var(--space-xl);
+        }
+
+        .map-bento {
+            width: 100%;
+            height: 400px;
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            background: #f0f0f0;
+            position: relative;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .map-bento iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 992px) {
+            .contact-split {
+                grid-template-columns: 1fr;
+            }
+            .contact-hero {
+                padding: calc(var(--space-3xl) * 1.5) var(--space-md) var(--space-xl);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .luxury-hero {
+                min-height: auto;
+                padding: calc(var(--space-3xl) * 1.5) var(--space-md) var(--space-xl);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Decorative Gradients matching entire site -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="app-wrapper">
+        <!-- Modern Header -->
+        <header class="site-header reveal active">
+            <a href="index.html" class="logo-container">
+                <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 50px; width: auto; display: block; background: transparent;">
+            </a>
+            
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="projects.html" class="nav-link">Our Projects</a>
+                <a href="social-enterprise.html" class="nav-link">Social Enterprise</a>
+                <a href="volunteer.html" class="nav-link">Volunteer</a>
+                <a href="partnership.html" class="nav-link">Partnerships</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="contact.html" class="nav-link" style="color: var(--color-primary-orange);">Contact Us</a>
+            </nav>
+            
+            <div style="display:flex; gap: 8px;">
+                <a href="index.html#donate" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">
+                    Donate <i class="ph-bold ph-heart"></i>
+                </a>
+            </div>
+        </header>
+
+        <main style="padding-top: 100px;">
+            <div class="container">
+                <!-- Pristine Luxury Hero -->
+                <section class="luxury-hero reveal">
+                    <img src="https://i.imgur.com/4928Tff.jpg" class="luxury-hero-bg" alt="Contact Us Hero Background" style="filter: brightness(0.85); object-position: center 30%;">
+                    <div class="luxury-hero-content">
+                        <p style="text-transform: uppercase; letter-spacing: 4px; color: #FFF; font-weight: 600; font-size: 0.85rem; margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 8px; display: inline-block;">
+                            Get In Touch
+                        </p>
+                        <h1 style="font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 900; margin-bottom: 24px; color: #FFF; line-height: 1.05;">
+                            Let's build<br>impactful futures.
+                        </h1>
+                        <p style="font-size: 1.25rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0; font-weight: 300;">
+                            We partner with visionary donors, dedicated volunteers, and leading foundations to reshape the future of disaster relief in Uganda.
+                        </p>
+                        
+                        <!-- Additional trust metrics matching homepage layout -->
+                        <div style="display: flex; gap: 24px; margin-top: 40px; align-items: center;">
+                            <div style="display: flex; -space-x: 10px;">
+                                <div style="width: 50px; height: 50px; border-radius: 50%; background: #eee; border: 3px solid #fff;"><img src="https://i.imgur.com/TGIzqh8.jpg" style="width:100%; height:100%; border-radius:50%; object-fit:cover;" alt="Executive Team"></div>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 1.1rem; color: #FFF; margin-bottom: 0;">Executive Team</h4>
+                                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin: 0; padding-top: 4px;">Responds within 24 hours.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <section class="section" style="padding-top: 0;">
+                <div class="container">
+                    
+                    <!-- Split Section: Contact Info (Left) and Form (Right) -->
+                    <div class="contact-split">
+                        
+                        <!-- Left side: Contact Detail Boxes -->
+                        <div class="contact-details">
+                            <div style="display: flex; flex-direction: column; gap: 24px;">
+                                
+                                <div class="info-card blue reveal">
+                                    <i class="ph-fill ph-map-pin ic-icon"></i>
+                                    <div>
+                                        <h4>Headquarters</h4>
+                                        <p>123 Resilience Way<br>Kampala, Uganda 45001</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-card orange reveal" style="transition-delay: 0.1s;">
+                                    <i class="ph-fill ph-envelope-simple ic-icon"></i>
+                                    <div>
+                                        <h4>Direct Email</h4>
+                                        <a href="mailto:hello@firevictimfriends.org">hello@firevictimfriends.org</a><br>
+                                        <a href="mailto:grants@firevictimfriends.org">grants@firevictimfriends.org</a>
+                                    </div>
+                                </div>
+
+                                <div class="info-card teal reveal" style="transition-delay: 0.2s;">
+                                    <i class="ph-fill ph-headset ic-icon"></i>
+                                    <div>
+                                        <h4>Command Center</h4>
+                                        <a href="tel:+256123456789">+256 (0) 123 456 789</a><br>
+                                        <span style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">Operates M-F, 9am - 5pm EAT</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Right Side: Clean Form Bento Card -->
+                        <div class="contact-card-bento reveal" style="transition-delay: 0.2s;">
+                            <h3 style="font-size: 1.8rem; margin-bottom: 32px; color: #1E1E1E;">Send a Transmission</h3>
+                            
+                            <form action="#" method="POST">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Full Name / Organization</label>
+                                    <input type="text" id="name" class="form-input" placeholder="e.g. John Doe">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" id="email" class="form-input" placeholder="john@example.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message" class="form-label">How can we collaborate?</label>
+                                    <textarea id="message" class="form-input" placeholder="Write your inquiry details here..."></textarea>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 16px; font-size: 1.05rem;">
+                                    Send Message <i class="ph-bold ph-paper-plane-tilt"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Clean Google Map Bento -->
+                    <div class="map-wrapper reveal">
+                        <h2 style="font-size: 1.8rem; margin-bottom: 24px; color: #1E1E1E;">Find Us Locally</h2>
+                        <div class="map-bento">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127641.1764654929!2d32.49307779774619!3d0.31357608240411804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbb0f51509de1%3A0xea12334542674d8c!2sKampala%2C%20Uganda!5e0!3m2!1sen!2sus!4v1714578166542!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+
+        <!-- Awwwards-Level Premium Footer -->
+        <div class="container" style="margin-bottom: var(--space-2xl); padding-bottom: var(--space-xl);">
+            <footer class="premium-footer reveal" id="resources">
+                
+                <!-- Mega Typography CTA -->
+                <div class="footer-mega-cta">
+                    <h2>Ready to build<br>impactful futures?</h2>
+                    <a href="index.html#donate" class="btn btn-primary" style="padding: 16px 32px; font-size: 1.1rem; flex-shrink: 0;">Make an Impact <i class="ph-bold ph-arrow-right"></i></a>
+                </div>
+
+                <!-- Main Content Grid -->
+                <div class="footer-main-grid">
+                    <!-- Brand Column -->
+                    <div class="footer-brand">
+                        <a href="index.html" class="logo-container" style="display:inline-flex; margin-bottom:24px; background: transparent; padding: 0;">
+                            <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 100px; width: auto; display: block; background: transparent;">
+                        </a>
+                        <p>Providing emotional support, vital resources, and crisis relief to those affected by fires across Uganda.</p>
+                        
+                        <div class="footer-socials">
+                            <a href="#" aria-label="Twitter"><i class="ph-fill ph-twitter-logo"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="ph-fill ph-instagram-logo"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="ph-fill ph-linkedin-logo"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="ph-fill ph-facebook-logo"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Navigation 1 -->
+                    <div class="footer-links">
+                        <h4>Explore Platform</h4>
+                        <ul>
+                            <li><a href="about.html">About FVF</a></li>
+                            <li><a href="projects.html">Our Mission</a></li>
+                            <li><a href="index.html#grant">FsF Grant Funding</a></li>
+                            <li><a href="partnership.html">Partners & Donors</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Navigation 2 -->
+                    <div class="footer-links">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Latest News</a></li>
+                            <li><a href="#">Impact Reports</a></li>
+                            <li><a href="#">Gallery & Media</a></li>
+                            <li><a href="contact.html" class="active">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter Column -->
+                    <div class="footer-links">
+                        <h4>Stay Updated</h4>
+                        <p style="color: #fff; font-size: 0.95rem; margin-bottom: 0;">Join our community newsletter for impact stories and urgent initiatives.</p>
+                        <form class="nl-form" onsubmit="event.preventDefault();">
+                            <input type="email" class="nl-input" placeholder="Enter your email address" required>
+                            <button type="submit" class="nl-submit" aria-label="Subscribe"><i class="ph-bold ph-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sub Footer -->
+                <div class="footer-bottom">
+                    <div>&copy; 2026 Fire Victim Friends NGO. "Rekindling Hope, Rebuilding lives"</div>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Back to Top <i class="ph-bold ph-caret-up"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <!-- Custom Interactions -->
+    <script src="js/main.js"></script>
+</body>
+</html>

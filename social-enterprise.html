@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Enterprise | Fire Victim Friends</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lato:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .shop-hero {
+            padding: calc(var(--space-3xl) * 1.5) var(--space-xl) var(--space-2xl);
+            position: relative;
+            background: #1a1a1a;
+            color: #fff;
+            border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+            overflow: hidden;
+        }
+
+        .shop-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://imgur.com/8sOE8mX.jpg') center/cover;
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .shop-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-xl);
+            padding: var(--space-2xl) 0;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+        }
+
+        .product-image-container {
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+            background: #fdfdfd;
+            position: relative;
+        }
+
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .product-card:hover .product-image-container img {
+            transform: scale(1.08);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--color-primary-orange);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            z-index: 10;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(247, 147, 30, 0.4);
+        }
+
+        .product-info {
+            padding: var(--space-lg);
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .product-info h3 {
+            font-size: 1.35rem;
+            margin-bottom: 6px;
+            color: #000;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .product-price {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--color-primary-blue);
+            margin-bottom: 24px;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            background: var(--color-primary-blue);
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-add-cart:hover {
+            background: #1a1b55;
+        }
+
+        /* Floating Cart Icon */
+        .cart-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #000;
+            color: #fff;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 100;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cart-fab:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--color-primary-orange);
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 800;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+
+        /* Cart Side Drawer */
+        .cart-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 200;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0; right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: #fff;
+            z-index: 201;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        .cart-drawer.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 24px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .cart-header h3 { margin: 0; font-size: 1.5rem; color: var(--color-primary-blue); }
+        .cart-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #888; }
+        
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+        }
+        .cart-item-details { flex-grow: 1; }
+        .cart-item-title { font-weight: 700; margin-bottom: 4px; color: #000; font-size: 0.95rem; }
+        .cart-item-price { color: var(--color-primary-orange); font-weight: 700; font-size: 0.9rem; margin-bottom: 8px;}
+        
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f5f5f5;
+            padding: 4px 8px;
+            border-radius: 100px;
+            width: max-content;
+        }
+        .qty-btn { border: none; background: transparent; cursor: pointer; font-weight: 700; font-size: 1rem; }
+        
+        .cart-footer {
+            padding: 24px;
+            border-top: 1px solid #eee;
+            background: #fafafa;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #000;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #25D366; /* WhatsApp Green */
+            color: #fff;
+            padding: 16px;
+            border: none;
+            border-radius: var(--radius-full);
+            font-weight: 800;
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        .checkout-btn:hover { background: #20BA56; }
+
+        .empty-cart {
+            text-align: center;
+            color: #888;
+            margin-top: 50px;
+        }
+
+        /* Order Details Modal for Checkout */
+        .checkout-modal {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 100%;
+            max-width: 500px;
+            background: #fff;
+            z-index: 300;
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .checkout-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #eee;
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+            font-family: inherit;
+        }
+        .form-control:focus {
+            border-color: var(--color-primary-blue);
+            outline: none;
+        }
+
+        /* Quick View Trigger */
+        .quick-view-trigger {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: rgba(255,255,255,0.95);
+            color: var(--color-primary-blue);
+            padding: 10px 24px;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(5px);
+            border: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            white-space: nowrap;
+        }
+        .product-card:hover .quick-view-trigger {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .quick-view-trigger:hover {
+            background: var(--color-primary-blue);
+            color: #fff;
+        }
+
+        /* Quick View Modal (Lightbox) */
+        .qv-modal {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            z-index: 300;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            max-width: 95vw;
+            max-height: 95vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .qv-modal.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .qv-image {
+            position: relative;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .qv-image img {
+            max-width: 95vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+            display: block;
+        }
+        .qv-close {
+            background: none; border: none;
+            font-size: 2rem; cursor: pointer; color: #fff;
+            transition: color 0.3s;
+            margin-bottom: 10px;
+        }
+        .qv-close:hover { color: var(--color-primary-orange); }
+        .qv-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 299;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .qv-overlay.active { opacity: 1; visibility: visible; }
+    </style>
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Header -->
+        <header class="site-header reveal active" style="background:#fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+            <a href="index.html" class="logo-container">
+                <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 50px; width: auto; display: block;">
+            </a>
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="projects.html" class="nav-link">Our Projects</a>
+                <a href="social-enterprise.html" class="nav-link" style="color:var(--color-primary-blue); font-weight:700;">Social Enterprise</a>
+                <a href="volunteer.html" class="nav-link">Volunteer</a>
+                <a href="partnership.html" class="nav-link">Partnerships</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+            </nav>
+            <div style="display:flex; gap: 8px;">
+                <a href="index.html#donate" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">
+                    Donate <i class="ph-bold ph-heart"></i>
+                </a>
+            </div>
+        </header>
+
+        <main style="padding-top: 80px;">
+            <!-- Hero -->
+            <section class="shop-hero">
+                <div class="shop-hero-content reveal">
+                    <span style="background:var(--color-primary-orange); color:#fff; padding:6px 16px; border-radius:100px; font-size:0.9rem; font-weight:800; display:inline-block; margin-bottom:20px;">SHOP FOR A CAUSE</span>
+                    <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; margin-bottom: 20px; line-height: 1.1; color: #fff;">Wear Your <span style="color:var(--color-primary-orange);">Support.</span></h1>
+                    <p style="font-size: 1.15rem; max-width: 600px; margin: 0 auto; color: rgba(255,255,255,0.9);">
+                        Supporting our FVF social enterprises helps us raise vital funds to provide emergency relief. Any purchase makes a great difference to fire victims across Uganda.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Store Grid -->
+            <div class="container reveal">
+                <div class="product-grid" id="productGrid">
+                    <!-- Products injected by JS -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <!-- Awwwards-Level Premium Footer -->
+        <div class="container" style="margin-bottom: var(--space-2xl); padding-bottom: var(--space-xl);">
+            <footer class="premium-footer reveal" id="resources">
+                
+                <!-- Mega Typography CTA -->
+                <div class="footer-mega-cta">
+                    <h2>Ready to build<br>impactful futures?</h2>
+                    <a href="index.html#donate" class="btn btn-primary" style="padding: 16px 32px; font-size: 1.1rem; flex-shrink: 0;">Make an Impact <i class="ph-bold ph-arrow-right"></i></a>
+                </div>
+
+                <!-- Main Content Grid -->
+                <div class="footer-main-grid">
+                    <!-- Brand Column -->
+                    <div class="footer-brand">
+                        <a href="index.html" class="logo-container" style="display:inline-flex; margin-bottom:24px; background: transparent; padding: 0;">
+                            <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 100px; width: auto; display: block; background: transparent;">
+                        </a>
+                        <p>Providing emotional support, vital resources, and crisis relief to those affected by fires across Uganda.</p>
+                        
+                        <div class="footer-socials">
+                            <a href="#" aria-label="Twitter"><i class="ph-fill ph-twitter-logo"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="ph-fill ph-instagram-logo"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="ph-fill ph-linkedin-logo"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="ph-fill ph-facebook-logo"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Navigation 1 -->
+                    <div class="footer-links">
+                        <h4>Explore Platform</h4>
+                        <ul>
+                            <li><a href="about.html">About FVF</a></li>
+                            <li><a href="projects.html">Our Mission</a></li>
+                            <li><a href="index.html#grant">FsF Grant Funding</a></li>
+                            <li><a href="partnership.html">Partners & Donors</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Navigation 2 -->
+                    <div class="footer-links">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Latest News</a></li>
+                            <li><a href="#">Impact Reports</a></li>
+                            <li><a href="#">Gallery & Media</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter Column -->
+                    <div class="footer-links">
+                        <h4>Stay Updated</h4>
+                        <p style="color: #fff; font-size: 0.95rem; margin-bottom: 0;">Join our community newsletter for impact stories and urgent initiatives.</p>
+                        <form class="nl-form" onsubmit="event.preventDefault();">
+                            <input type="email" class="nl-input" placeholder="Enter your email address" required>
+                            <button type="submit" class="nl-submit" aria-label="Subscribe"><i class="ph-bold ph-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sub Footer -->
+                <div class="footer-bottom">
+                    <div>&copy; 2026 Fire Victim Friends NGO. "Rekindling Hope, Rebuilding lives"</div>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Back to Top <i class="ph-bold ph-caret-up"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Floating Cart Button -->
+    <div class="cart-fab" onclick="toggleCart()">
+        <i class="ph-bold ph-shopping-cart" style="font-size: 1.8rem;"></i>
+        <div class="cart-badge" id="cartBadge">0</div>
+    </div>
+
+    <!-- Cart Overlay & Drawer -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="cart-close" onclick="toggleCart()"><i class="ph-bold ph-x"></i></button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer">
+            <!-- Cart items injected by JS -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotalDisplay">0 UGX</span>
+            </div>
+            <button class="checkout-btn" onclick="openCheckoutModal()">
+                <i class="ph-bold ph-whatsapp-logo"></i> Checkout via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="cart-overlay" id="checkoutOverlay" style="z-index: 299;" onclick="closeCheckoutModal()"></div>
+    <div class="checkout-modal" id="checkoutModal">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+            <h3 style="font-size: 1.5rem; color: #000; margin:0;">Delivery Details</h3>
+            <button style="background:none; border:none; font-size:1.5rem; cursor:pointer;" onclick="closeCheckoutModal()"><i class="ph-bold ph-x"></i></button>
+        </div>
+        <form onsubmit="processCheckout(event)">
+            <input type="text" id="chkName" class="form-control" placeholder="Full Name" required>
+            <input type="text" id="chkPhone" class="form-control" placeholder="Phone Number (e.g. +256...)" required>
+            <textarea id="chkAddress" class="form-control" placeholder="Delivery Address / Town in Uganda" rows="3" required></textarea>
+            <button type="submit" class="checkout-btn">
+                Send Order Request
+            </button>
+            <p style="text-align:center; font-size:0.85rem; color:#666; margin-top:16px;">
+                You will be redirected to WhatsApp to confirm your order details and arrange payment directly with FVF.
+            </button>
+        </form>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div class="qv-overlay" id="qvOverlay" onclick="closeQuickView()"></div>
+    <div class="qv-modal" id="qvModal">
+        <div class="qv-image">
+            <button class="qv-close" onclick="closeQuickView()"><i class="ph-bold ph-x"></i></button>
+            <img id="qvImg" src="" alt="Product Image">
+        </div>
+    </div>
+
+    <script>
+        // Products Data
+        const products = [
+            { id: 'p1', name: 'Wholesale Bundle Pack', price: 50000, img: 'https://imgur.com/Map723R.jpg' },
+            { id: 'p2', name: 'Hope Purple Tee', price: 50000, img: 'https://imgur.com/nT2O1rX.jpg' },
+            { id: 'p3', name: 'Resilience Light Blue Tee', price: 50000, img: 'https://imgur.com/9LdIDiv.jpg' },
+            { id: 'p4', name: 'Purity White Tee', price: 50000, img: 'https://imgur.com/lK9xTcM.jpg' },
+            { id: 'p5', name: 'Hero Spotlight Tee', price: 50000, img: 'https://imgur.com/8sOE8mX.jpg' },
+            { id: 'p6', name: 'Community Impact Tee', price: 50000, img: 'https://imgur.com/KpSVCdt.jpg' },
+            { id: 'p7', name: 'Empowerment Edition Tee', price: 50000, img: 'https://imgur.com/YVyEyE3.jpg' },
+            { id: 'p8', name: 'Advocate Graphic Tee', price: 50000, img: 'https://imgur.com/6KcZV88.jpg' }
+        ];
+
+        // Format Currency
+        const formatUGX = (amount) => {
+            return amount.toLocaleString() + ' UGX';
+        };
+
+        // Render Products
+        const productGrid = document.getElementById('productGrid');
+        products.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            let badge = '';
+            if(product.id === 'p1') badge = '<div class="product-badge" style="background:var(--color-teal);">BULK DEAL</div>';
+            if(product.id === 'p5') badge = '<div class="product-badge">HERO EDITION</div>';
+            if(product.id === 'p6' || product.id === 'p8') badge = '<div class="product-badge" style="background:var(--color-primary-blue);">HOT PICK</div>';
+            
+            card.innerHTML = `
+                <div class="product-image-container">
+                    ${badge}
+                    <img src="${product.img}" alt="${product.name}">
+                    <button class="quick-view-trigger" onclick="openQuickView('${product.id}')"><i class="ph-bold ph-eye"></i> Quick View</button>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <h3>${product.name}</h3>
+                        <div class="product-price">${formatUGX(product.price)}</div>
+                    </div>
+                    <button class="btn-add-cart" onclick="addToCart('${product.id}')">
+                        <i class="ph-bold ph-bag"></i> Add to Cart
+                    </button>
+                </div>
+            `;
+            productGrid.appendChild(card);
+        });
+
+        // Quick View Logic
+        const openQuickView = (id) => {
+            const product = products.find(p => p.id === id);
+            if(!product) return;
+            
+            document.getElementById('qvImg').src = product.img;
+            
+            document.getElementById('qvOverlay').classList.add('active');
+            document.getElementById('qvModal').classList.add('active');
+        };
+
+        const closeQuickView = () => {
+            document.getElementById('qvOverlay').classList.remove('active');
+            document.getElementById('qvModal').classList.remove('active');
+        };
+
+        // Cart Logic
+        let cart = JSON.parse(localStorage.getItem('fvf_cart')) || [];
+
+        const saveCart = () => {
+            localStorage.setItem('fvf_cart', JSON.stringify(cart));
+            updateCartUI();
+        };
+
+        const addToCart = (id) => {
+            const existing = cart.find(item => item.id === id);
+            if(existing) {
+                existing.qty += 1;
+            } else {
+                const product = products.find(p => p.id === id);
+                cart.push({ ...product, qty: 1 });
+            }
+            saveCart();
+            toggleCart(true); // Open drawer
+        };
+
+        const updateQty = (id, change) => {
+            const item = cart.find(i => i.id === id);
+            if(item) {
+                item.qty += change;
+                if(item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+                saveCart();
+            }
+        };
+
+        const updateCartUI = () => {
+            // Update Badge
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartBadge').innerText = totalItems;
+            
+            // Update Drawer
+            const container = document.getElementById('cartItemsContainer');
+            if(cart.length === 0) {
+                container.innerHTML = `<div class="empty-cart"><i class="ph-bold ph-shopping-cart" style="font-size:3rem; opacity:0.5;"></i><p>Your cart is empty</p></div>`;
+                document.getElementById('cartTotalDisplay').innerText = '0 UGX';
+                return;
+            }
+
+            let totalCost = 0;
+            container.innerHTML = '';
+            cart.forEach(item => {
+                totalCost += (item.price * item.qty);
+                const itemEl = document.createElement('div');
+                itemEl.className = 'cart-item';
+                itemEl.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">${formatUGX(item.price)}</div>
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="updateQty('${item.id}', -1)">-</button>
+                            <span style="font-size:0.9rem; font-weight:700;">${item.qty}</span>
+                            <button class="qty-btn" onclick="updateQty('${item.id}', 1)">+</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(itemEl);
+            });
+
+            document.getElementById('cartTotalDisplay').innerText = formatUGX(totalCost);
+        };
+
+        // UI Toggles
+        const toggleCart = (forceOpen = false) => {
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('cartOverlay');
+            if(forceOpen || !drawer.classList.contains('active')) {
+                drawer.classList.add('active');
+                overlay.classList.add('active');
+            } else {
+                drawer.classList.remove('active');
+                overlay.classList.remove('active');
+            }
+        };
+
+        const openCheckoutModal = () => {
+            if(cart.length === 0) return alert('Your cart is empty!');
+            toggleCart(); // Close drawer
+            document.getElementById('checkoutOverlay').classList.add('active');
+            document.getElementById('checkoutModal').classList.add('active');
+        };
+
+        const closeCheckoutModal = () => {
+            document.getElementById('checkoutOverlay').classList.remove('active');
+            document.getElementById('checkoutModal').classList.remove('active');
+        };
+
+        // WhatsApp Checkout Processor
+        const processCheckout = (e) => {
+            e.preventDefault();
+            const name = document.getElementById('chkName').value;
+            const phone = document.getElementById('chkPhone').value;
+            const address = document.getElementById('chkAddress').value;
+            
+            let message = `*NEW SHOP ORDER - FVF SOCIAL ENTERPRISE*%0A%0A`;
+            message += `*Customer:* ${name}%0A`;
+            message += `*Phone:* ${phone}%0A`;
+            message += `*Address:* ${address}%0A%0A`;
+            message += `*Items:*%0A`;
+            
+            let total = 0;
+            cart.forEach(item => {
+                message += `- ${item.qty}x ${item.name} (${formatUGX(item.price * item.qty)})%0A`;
+                total += (item.price * item.qty);
+            });
+            
+            message += `%0A*Total Order Value:* ${formatUGX(total)}%0A%0A`;
+            message += `Please advise on payment via Mobile Money.`;
+
+            // FVF Support Whatsapp Number Placeholder
+            const whatsappNumber = "256700000000"; 
+            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+            // Clear cart
+            cart = [];
+            saveCart();
+            closeCheckoutModal();
+            
+            // Redirect
+            window.open(whatsappLink, '_blank');
+        };
+
+        // Init
+        updateCartUI();
+    </script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

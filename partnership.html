@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnerships & Donors | Fire Victim Friends</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lato:wght@400;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .projects-hero {
+            padding: calc(var(--space-3xl) * 2) var(--space-xl) var(--space-3xl);
+            position: relative;
+            text-align: center;
+            border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+            background: linear-gradient(135deg, rgba(46, 49, 146, 0.05), rgba(247, 147, 30, 0.05));
+            overflow: hidden;
+        }
+
+        .projects-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('images/hero_partnership.png') center/cover;
+            opacity: 0.15;
+            z-index: -1;
+            filter: grayscale(80%) blur(4px);
+        }
+        
+        .floating-pill {
+            position: absolute;
+            background: white;
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            box-shadow: var(--shadow-floating);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Fast Facts Grid */
+        .bento-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+            margin-bottom: 0;
+            transform: translateY(-50px);
+            position: relative;
+            z-index: 20;
+        }
+        @media (max-width: 1024px) {
+            .bento-grid-3 { grid-template-columns: repeat(2, 1fr); transform: translateY(-30px); }
+        }
+        @media (max-width: 768px) {
+            .bento-grid-3 { grid-template-columns: 1fr; transform: translateY(0); margin-top: 20px;}
+        }
+
+        .fast-facts {
+            padding: var(--space-lg);
+            background: #fff;
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-hover);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .fast-facts-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            border-radius: var(--radius-full);
+            flex-shrink: 0;
+        }
+
+        /* Staggered Narrative Rules */
+        .staggered-row {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: var(--space-4xl);
+            align-items: center;
+            margin-bottom: 80px;
+        }
+        .staggered-row.reverse {
+            grid-template-columns: 0.9fr 1.1fr;
+        }
+        .staggered-row.reverse .stagger-content {
+            grid-column: 1;
+            grid-row: 1;
+        }
+        .staggered-row.reverse .stagger-image {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        @media (max-width: 992px) {
+            .staggered-row, .staggered-row.reverse {
+                grid-template-columns: 1fr !important;
+                gap: var(--space-2xl);
+                margin-bottom: 48px;
+            }
+            .staggered-row.reverse .stagger-content { grid-row: 2; grid-column: 1 !important; }
+            .staggered-row.reverse .stagger-image { grid-row: 1; grid-column: 1 !important; }
+        }
+
+        .stagger-image img {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            border-radius: var(--radius-2xl);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        }
+
+        .stagger-content h3 {
+            font-size: 2.5rem;
+            color: var(--color-primary-blue);
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+        .stagger-content p {
+            font-size: 1.1rem;
+            color: #000;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        .stagger-content ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 24px;
+        }
+        .stagger-content ul li {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .stagger-content ul li::before {
+            content: '✔';
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--color-primary-orange);
+            font-size: 1.2rem;
+        }
+
+        /* Metrics Box */
+        .metric-box {
+            text-align: center;
+            padding: var(--space-xl);
+            background: #fff;
+            border-radius: var(--radius-2xl);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .metric-box h4 { font-size: 3.5rem; font-weight: 900; color: var(--color-primary-blue); margin-bottom: 8px; line-height: 1; }
+        .metric-box p { font-size: 1.1rem; font-weight: 600; color: #000; margin: 0; text-transform: uppercase; }
+
+        /* Pure Blue CTA */
+        .pure-blue-cta {
+            background: var(--color-primary-blue);
+            border-radius: var(--radius-2xl);
+            padding: 100px 40px;
+            text-align: center;
+            box-shadow: 0 40px 80px rgba(46, 49, 146, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .pure-blue-cta::before {
+            content: '';
+            position: absolute; top: -50%; left: -10%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+        }
+        .pure-glass-box {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: var(--radius-xl);
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .floating-pill { display: none !important; }
+            .fast-facts { flex-direction: column; text-align: center; gap: 16px; padding: var(--space-md); }
+            .staggered-row, .staggered-row.reverse { gap: var(--space-lg) !important; margin-bottom: 48px !important; }
+            .projects-hero { padding: var(--space-2xl) var(--space-sm) var(--space-lg); }
+            .projects-hero h1 { font-size: clamp(2.2rem, 8vw, 2.8rem) !important; margin-bottom: 16px; }
+            .projects-hero p { font-size: 1rem !important; padding: 0 16px; }
+            .stagger-image img { height: 280px; border-radius: var(--radius-xl); }
+            .stagger-content h3 { font-size: 1.8rem; }
+            .stagger-content p { font-size: 1rem; }
+            .metric-box { padding: var(--space-md); }
+            .metric-box h4 { font-size: 2.5rem; }
+            .pure-blue-cta { padding: 40px 16px; border-radius: var(--radius-xl); }
+            .pure-glass-box { padding: 24px 16px; border-radius: var(--radius-md); }
+            .pure-glass-box p { font-size: 1rem !important; }
+        }
+
+        /* Sticky Partner FAB */
+        .partner-fab {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-primary-blue);
+            color: #fff;
+            padding: 16px 40px;
+            border-radius: var(--radius-full);
+            font-size: 1.15rem;
+            font-weight: 800;
+            box-shadow: 0 15px 40px rgba(46, 49, 146, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease;
+            border: none;
+        }
+        .partner-fab:hover {
+            transform: translateX(-50%) scale(1.05) translateY(-5px);
+            background: #1e2060;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            background: #fff;
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+        .modal-header {
+            padding: 24px 32px;
+            border-bottom: 2px solid rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 10;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+        .modal-header h3 {
+            font-size: 1.5rem;
+            color: var(--color-primary-blue);
+            margin: 0;
+            line-height: 1.2;
+        }
+        .modal-close {
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.3s;
+        }
+        .modal-close:hover {
+            color: var(--color-primary-orange);
+        }
+        .modal-body {
+            padding: 32px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #222;
+            font-size: 0.95rem;
+        }
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid rgba(0,0,0,0.08);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-family: inherit;
+            color: #000;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        select.form-control {
+            -webkit-appearance: none;
+            appearance: none;
+            background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 256 256'%3E%3Cpath d='M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z'/%3E%3C/svg%3E") no-repeat right 16px center;
+            background-size: 16px;
+            background-color: #fff;
+            padding-right: 48px;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-primary-blue);
+            box-shadow: 0 0 0 4px rgba(46, 49, 146, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .partner-fab {
+                bottom: 20px;
+                padding: 14px 28px;
+                font-size: 1rem;
+            }
+            .modal-body { padding: 20px; }
+            .modal-header { padding: 16px 20px; }
+            
+            .form-control {
+                font-size: 16px !important; /* Prevent iOS input zoom */
+                padding: 12px 14px;
+            }
+            .modal-body .btn[type="submit"] {
+                padding: 16px !important;
+                font-size: 0.95rem !important;
+                white-space: normal;
+                line-height: 1.3;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <!-- Decorative Gradients -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="app-wrapper">
+        <!-- Modern Site Header -->
+        <header class="site-header reveal active" style="transition: all 0.3s ease;">
+            <a href="index.html" class="logo-container">
+                <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 50px; width: auto; display: block; background: transparent;">
+            </a>
+            
+            <nav class="header-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="projects.html" class="nav-link">Our Projects</a>
+                <a href="social-enterprise.html" class="nav-link">Social Enterprise</a>
+                <a href="volunteer.html" class="nav-link">Volunteer</a>
+                <a href="partnership.html" class="nav-link">Partnerships</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+            </nav>
+            
+            <div style="display:flex; gap: 8px;">
+                <a href="index.html#donate" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">
+                    Donate <i class="ph-bold ph-heart"></i>
+                </a>
+            </div>
+        </header>
+
+        <main style="padding-top: 20px;">
+            <div class="container">
+                <!-- Premium Program Hero -->
+                <section class="projects-hero reveal">
+                    <!-- Floating aesthetic elements -->
+                    <div class="floating-pill fp-1 reveal" style="top: 20%; left: 10%; color: var(--color-primary-blue);"><i class="ph-fill ph-handshake"></i> Community Sponsorships</div>
+                    <div class="floating-pill fp-2 reveal" style="bottom: 30%; right: 10%; color: var(--color-teal); animation-delay: -3s;"><i class="ph-fill ph-bank"></i> Grassroots Funding</div>
+                    <div class="floating-pill fp-3 reveal" style="top: 40%; right: 15%; color: var(--color-primary-orange); animation-delay: -1.5s; transform: scale(0.85);"><i class="ph-fill ph-truck"></i> Resource Sharing</div>
+
+                    <div style="max-width: 800px; margin: 0 auto; position: relative; z-index: 10;">
+                        <div class="projects-badge reveal" style="display: inline-flex; align-items: center; gap: 8px; background: #FFF; padding: 8px 24px; border-radius: var(--radius-full); color: var(--color-primary-blue); font-weight: 700; font-size: 0.95rem; box-shadow: var(--shadow-soft); margin-bottom: var(--space-md); border: 2px solid rgba(46, 49, 146, 0.2); text-transform: uppercase;">
+                            <i class="ph-bold ph-globe-hemisphere-east"></i> Global Ecosystem
+                        </div>
+                        <h1 style="font-size: clamp(3rem, 5vw, 4.5rem); font-weight: 900; margin-bottom: 24px; color: var(--color-primary-blue); line-height: 1.1;">
+                            Build With <span style="background: linear-gradient(135deg, var(--color-primary-blue), var(--color-primary-orange)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Us.</span>
+                        </h1>
+                        <p style="font-size: 1.15rem; color: #000; max-width: 600px; margin: 0 auto;">
+                            Solving systemic disaster resilience requires passionate collaboration. We reflect an emerging, dedicated team actively seeking partners—businesses, funders, and alliances—to help us scale our impact and save lives.
+                        </p>
+                    </div>
+                </section>
+                
+                <!-- Fast Facts -->
+                <div class="bento-grid-3">
+                    <div class="bento-card fast-facts reveal">
+                        <div class="fast-facts-icon" style="background: rgba(46, 49, 146, 0.1); color: var(--color-primary-blue);">
+                            <i class="ph-fill ph-file-text" style="font-size: 2.2rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.5rem; margin-bottom: 4px; color: #000; font-weight: 800;">Tangible Impact</h4>
+                            <p style="color: #000; font-size: 0.9rem; margin: 0;">Direct community reporting.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card fast-facts reveal" style="transition-delay: 0.1s;">
+                        <div class="fast-facts-icon" style="background: rgba(0, 167, 157, 0.1); color: var(--color-teal);">
+                            <i class="ph-fill ph-receipt" style="font-size: 2.2rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.5rem; margin-bottom: 4px; color: #000; font-weight: 800;">Growth Focused</h4>
+                            <p style="color: #000; font-size: 0.9rem; margin: 0;">Scaling our reach together.</p>
+                        </div>
+                    </div>
+
+                    <div class="bento-card fast-facts reveal" style="transition-delay: 0.2s;">
+                        <div class="fast-facts-icon" style="background: rgba(247, 147, 30, 0.1); color: var(--color-primary-orange);">
+                            <i class="ph-fill ph-target" style="font-size: 2.2rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 1.5rem; margin-bottom: 4px; color: #000; font-weight: 800;">Shared Mission</h4>
+                            <p style="color: #000; font-size: 0.9rem; margin: 0;">Unified grassroots goals.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deep Editorial Staggered Layout -->
+                <section class="section" style="padding-top: var(--space-2xl);">
+                    
+                    <!-- Row 1 -->
+                    <div class="staggered-row reveal">
+                        <div class="stagger-image">
+                            <img src="images/local_business.png" alt="Corporate CSR Partnership">
+                        </div>
+                        <div class="stagger-content">
+                            <span class="p-tag" style="background: rgba(46, 49, 146, 0.1); color: var(--color-primary-blue); padding: 8px 16px; border-radius: 100px; font-weight: 800; font-size: 0.9rem; margin-bottom: 20px; display: inline-block;">LOCAL ALIGNMENTS</span>
+                            <h3>Local Business Sponsorships</h3>
+                            <p>As an emerging NGO, we rely on the power of community-minded businesses. Partnering with us allows your team to directly impact and genuinely preserve the vulnerable neighborhoods you operate within.</p>
+                            <p>By sponsoring our frontline operations or the FsF Grant program, you guarantee highly visible, direct change that your employees and community will instantly recognize and appreciate.</p>
+                            <ul>
+                                <li>Direct brand association with vital local humanitarian relief.</li>
+                                <li>Employee volunteer programs and community engagement days.</li>
+                                <li>Visible grassroots reporting and authentic social sharing.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Row 2 (Reversed) -->
+                    <div class="staggered-row reverse reveal">
+                        <div class="stagger-content">
+                            <span class="p-tag" style="background: rgba(0, 167, 157, 0.1); color: var(--color-teal); padding: 8px 16px; border-radius: 100px; font-weight: 800; font-size: 0.9rem; margin-bottom: 20px; display: inline-block;">CORE FUNDING</span>
+                            <h3>Early-Stage Grant Funders</h3>
+                            <p>Grassroots reform requires structured financial backing to truly scale. We are actively seeking philanthropic alignment with grant providers who believe heavily in empowering agile, local organizations.</p>
+                            <p>Your early-stage grant funding provides the vital foundational capital needed to train our volunteers faster, deploy rescue resources effectively, and ultimately expand our operational footprint.</p>
+                            <ul>
+                                <li>Transparent and consistent progress reporting.</li>
+                                <li>Careful and dedicated financial allocation.</li>
+                                <li>Helping us scale our localized execution across Uganda.</li>
+                            </ul>
+                        </div>
+                        <div class="stagger-image">
+                            <img src="images/grant_funder.png" alt="Institutional Grant Meeting">
+                        </div>
+                    </div>
+
+                    <!-- Row 3 -->
+                    <div class="staggered-row reveal">
+                        <div class="stagger-image">
+                            <img src="images/resource_donation.png" alt="Logistics and Resource Donation">
+                        </div>
+                        <div class="stagger-content">
+                            <span class="p-tag" style="background: rgba(247, 147, 30, 0.1); color: var(--color-primary-orange); padding: 8px 16px; border-radius: 100px; font-weight: 800; font-size: 0.9rem; margin-bottom: 20px; display: inline-block;">RESOURCE EXCHANGE</span>
+                            <h3>In-Kind & Volunteer Exchange</h3>
+                            <p>Financial capital is crucial, but physical resources and shared knowledge fundamentally drive our survival. We welcome immediate ties with organizations willing to share their operational strengths.</p>
+                            <p>By donating clinical supplies, sharing your volunteer networks, or simply providing basic logistical support, our partners deliver immediate, life-sustaining infrastructure directly to our frontline teams.</p>
+                            <ul>
+                                <li>Medical and emergency physical supply donations.</li>
+                                <li>Logistical and transportation assistance.</li>
+                                <li>Sharing key operational knowledge and joint training.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Impact Metrics Array -->
+                <section class="section" style="padding-top: 0; padding-bottom: var(--space-2xl);">
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <h3 style="font-size: 2.2rem; color: var(--color-primary-blue);">Our Vision</h3>
+                        <p style="color: #000; font-size: 1.1rem;">A growing network dedicated to scaling meaningful disaster reform.</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-lg);">
+                        <div class="metric-box reveal">
+                            <h4>100%</h4>
+                            <p>Transparency</p>
+                        </div>
+                        <div class="metric-box reveal" style="transition-delay: 0.1s;">
+                            <h4 style="color: var(--color-primary-orange);"><i class="ph-bold ph-heart"></i></h4>
+                            <p>Unlimited Passion</p>
+                        </div>
+                        <div class="metric-box reveal" style="transition-delay: 0.2s;">
+                            <h4 style="color: var(--color-teal);"><i class="ph-bold ph-chart-line-up"></i></h4>
+                            <p>Growing Network</p>
+                        </div>
+                        <div class="metric-box reveal" style="transition-delay: 0.3s;">
+                            <h4 style="color: var(--color-primary-blue);">1</h4>
+                            <p>Shared Mission</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Pure Brutalist Blue CTA (No Form, Just Trigger) -->
+                <section class="section reveal" style="padding-top: 0; padding-bottom: var(--space-2xl);" id="apply">
+                    <div class="pure-blue-cta">
+                        <div class="pure-glass-box" style="text-align: left;">
+                            <h2 style="font-size: 3rem; font-weight: 900; color: #000; line-height: 1.1; margin-bottom: 16px; text-transform: uppercase;">Let's Grow<br>Together.</h2>
+                            <p style="color: #444; font-size: 1.1rem; margin-bottom: 32px; font-weight: 500;">
+                                Align your team with an emerging mission dedicated entirely to localized survival. Submit an inquiry today, and let's structure a partnership that scales our community impact.
+                            </p>
+                            
+                            <div style="text-align: center;">
+                                <button type="button" onclick="openPartnerModal()" class="btn" style="background: var(--color-primary-blue); color: #fff; padding: 18px 40px; font-size: 1.15rem; font-weight: 900; border-radius: var(--radius-full); border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 12px; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(46, 49, 146, 0.4); margin-top: 8px;">
+                                    SUBMIT PARTNER INQUIRY <i class="ph-bold ph-handshake"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div> <!-- END CONTAINER -->
+        </main>
+
+        <!-- Awwwards-Level Premium Footer -->
+        <div class="container" style="margin-bottom: var(--space-2xl); padding-bottom: var(--space-xl);">
+            <footer class="premium-footer reveal" id="resources">
+                
+                <!-- Mega Typography CTA -->
+                <div class="footer-mega-cta">
+                    <h2>Ready to build<br>impactful futures?</h2>
+                    <a href="index.html#donate" class="btn btn-primary" style="padding: 16px 32px; font-size: 1.1rem; flex-shrink: 0;">Make an Impact <i class="ph-bold ph-arrow-right"></i></a>
+                </div>
+
+                <!-- Main Content Grid -->
+                <div class="footer-main-grid">
+                    <!-- Brand Column -->
+                    <div class="footer-brand">
+                        <a href="index.html" class="logo-container" style="display:inline-flex; margin-bottom:24px; background: transparent; padding: 0;">
+                            <img src="https://i.imgur.com/8jLqH6D.png" alt="Fire Victim Friends Logo" style="height: 100px; width: auto; display: block; background: transparent;">
+                        </a>
+                        <p>Providing emotional support, vital resources, and crisis relief to those affected by fires across Uganda.</p>
+                        
+                        <div class="footer-socials">
+                            <a href="#" aria-label="Twitter"><i class="ph-fill ph-twitter-logo"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="ph-fill ph-instagram-logo"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="ph-fill ph-linkedin-logo"></i></a>
+                            <a href="#" aria-label="Facebook"><i class="ph-fill ph-facebook-logo"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Navigation 1 -->
+                    <div class="footer-links">
+                        <h4>Explore Platform</h4>
+                        <ul>
+                            <li><a href="about.html">About FVF</a></li>
+                            <li><a href="projects.html">Our Mission</a></li>
+                            <li><a href="index.html#grant">FsF Grant Funding</a></li>
+                            <li><a href="partnership.html">Partners & Donors</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Navigation 2 -->
+                    <div class="footer-links">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Latest News</a></li>
+                            <li><a href="#">Impact Reports</a></li>
+                            <li><a href="#">Gallery & Media</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter Column -->
+                    <div class="footer-links">
+                        <h4>Stay Updated</h4>
+                        <p style="color: #fff; font-size: 0.95rem; margin-bottom: 0;">Join our community newsletter for impact stories and urgent initiatives.</p>
+                        <form class="nl-form" onsubmit="event.preventDefault();">
+                            <input type="email" class="nl-input" placeholder="Enter your email address" required>
+                            <button type="submit" class="nl-submit" aria-label="Subscribe"><i class="ph-bold ph-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sub Footer -->
+                <div class="footer-bottom">
+                    <div>&copy; 2026 Fire Victim Friends NGO. "Rekindling Hope, Rebuilding lives"</div>
+                    <div class="footer-bottom-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Back to Top <i class="ph-bold ph-caret-up"></i></a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+    </div> <!-- End app-wrapper -->
+
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Sticky Partner Button -->
+    <button class="partner-fab" onclick="openPartnerModal()" aria-label="Open Partner Form">
+        <i class="ph-bold ph-handshake"></i> Partner With Us
+    </button>
+
+    <!-- Partnership Modal -->
+    <div class="modal-overlay" id="partnerModal" onclick="closePartnerModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3>Partnership Opportunities<br><span style="font-size:1rem;font-weight:500;color:#666;">with Fire Victim Friends</span></h3>
+                <button class="modal-close" onclick="closePartnerModal(true)"><i class="ph-bold ph-x"></i></button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="event.preventDefault(); alert('Inquiry Sent! Our executive team will reach out to you shortly.'); closePartnerModal(true);">
+                    <div class="form-group">
+                        <label>Organization Name:</label>
+                        <input type="text" class="form-control" placeholder="E.g. Acme Foundation" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Person:</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Interest in Partnering:</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Type of Partnership:</label>
+                        <select class="form-control" required>
+                            <option value="" disabled selected>Select Primary Interest</option>
+                            <option value="financial">Financial Support</option>
+                            <option value="inkind">In-Kind Donation</option>
+                            <option value="volunteer">Volunteer Support</option>
+                            <option value="program">Program Collaboration</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Other (please specify):</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Goals and Objectives:</label>
+                        <textarea class="form-control" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>How do you envision our organizations working together?</label>
+                        <textarea class="form-control" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 24px;">
+                        <label>What benefits do you see for both organizations through this partnership?</label>
+                        <textarea class="form-control" rows="3" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="background:var(--color-primary-blue);color:#fff;width:100%;padding:18px;border-radius:var(--radius-full);font-weight:900;font-size:1.1rem;border:none;cursor:pointer;box-shadow: 0 10px 30px rgba(46, 49, 146, 0.3); letter-spacing: 0.5px;">SUBMIT PARTNERSHIP INQUIRY</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openPartnerModal() {
+            document.getElementById('partnerModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closePartnerModal(force) {
+            if (force === true || event.target.id === 'partnerModal') {
+                document.getElementById('partnerModal').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+    </script>
+</body>
+</html>
