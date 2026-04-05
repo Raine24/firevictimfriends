@@ -96,10 +96,6 @@
             z-index: 0;
         }
 
-        .project-card-interactive:hover .card-bg-img {
-            transform: scale(1.08); /* Zoom effect */
-        }
-
         .project-card-interactive .p-overlay {
             position: absolute;
             inset: 0;
@@ -109,22 +105,12 @@
             transition: opacity 0.4s ease;
         }
 
-        .project-card-interactive:hover .p-overlay {
-            opacity: 0.8;
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 100%);
-        }
-
         .p-content {
             position: relative;
             z-index: 2;
             padding: var(--space-xl);
             color: white;
-            transform: translateY(20px);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .project-card-interactive:hover .p-content {
-            transform: translateY(0);
         }
 
         .p-tag {
@@ -144,9 +130,6 @@
         }
 
         .p-details {
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             font-size: 0.95rem;
             color: #FFFFFF;
@@ -156,16 +139,41 @@
             color: #FFFFFF !important;
         }
 
-        .project-card-interactive:hover .p-details {
-            opacity: 1;
-            max-height: 200px; /* Expand reveal */
-            margin-top: 16px;
-        }
-
         .p-details ul {
             padding-left: 20px;
             margin-top: 12px;
             margin-bottom: 20px;
+        }
+
+        @media (min-width: 769px) {
+            .project-card-interactive:hover .card-bg-img {
+                transform: scale(1.08); /* Zoom effect */
+            }
+
+            .project-card-interactive:hover .p-overlay {
+                opacity: 0.8;
+                background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 100%);
+            }
+
+            .p-content {
+                transform: translateY(20px);
+            }
+
+            .project-card-interactive:hover .p-content {
+                transform: translateY(0);
+            }
+
+            .p-details {
+                opacity: 0;
+                max-height: 0;
+                overflow: hidden;
+            }
+
+            .project-card-interactive:hover .p-details {
+                opacity: 1;
+                max-height: 500px; /* Expand reveal */
+                margin-top: 16px;
+            }
         }
 
         /* Mobile specific adjustments for projects page */
