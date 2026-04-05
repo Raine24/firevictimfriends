@@ -1129,3 +1129,37 @@ input:focus, textarea:focus, select:focus {
     }
 }
 
+/* Preloader System */
+#fvf-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff; /* Use white to match the bright vibe and natural logo */
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#fvf-preloader .preloader-logo {
+    height: 120px;
+    width: auto;
+    animation: fvf-pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes fvf-pulse {
+    0% { transform: scale(0.95); opacity: 0.6; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0.6; }
+}
+
+body.loaded #fvf-preloader {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+

@@ -137,3 +137,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000); // 5 seconds per slide transition
     }
 });
+
+// Global Preloader Logic
+window.addEventListener('load', () => {
+    // Add small delay to ensure smooth transition
+    setTimeout(() => {
+        document.body.classList.add('loaded');
+    }, 400); // 400ms buffer for visuals 
+});
+
