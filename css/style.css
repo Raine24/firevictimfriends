@@ -1069,10 +1069,8 @@ input:focus, textarea:focus, select:focus {
 
 @media (max-width: 768px) {
     .premium-footer {
-        margin-left: calc(-1 * var(--space-sm));
-        margin-right: calc(-1 * var(--space-sm));
-        border-radius: 0;
-        padding: var(--space-xl) var(--space-md);
+        border-radius: var(--radius-2xl);
+        padding: var(--space-xl) var(--space-lg);
     }
     .footer-mega-cta {
         flex-direction: column;
