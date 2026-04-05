@@ -799,7 +799,7 @@ img {
     padding: 12px 20px;
     width: calc(100% - 24px);
   }
-  .logo-container img {
+  .site-header .logo-container img {
     height: 40px !important;
   }
   .ih-content {
