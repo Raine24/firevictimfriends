@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Fire Victim Friends</title>
-    <meta name="description" content="Get in touch with Fire Victim Friends to coordinate relief, explore grant opportunities, or volunteer.">
+    <title>Make a Donation | Fire Victim Friends</title>
+    <meta name="description" content="Support Fire Victim Friends with a direct donation via Bank Transfer or PayPal to fund our frontline relief and prevention programs.">
     
     <!-- Fonts: Lato (Headings) & Inter (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -57,12 +57,14 @@
             border: 1px solid rgba(0,0,0,0.03);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Luxury Minimalist Hero Styles */
         .luxury-hero {
             position: relative;
-            min-height: 75vh;
+            min-height: 60vh; /* Slightly smaller hero for donation page */
             display: flex;
             align-items: center;
             border-radius: var(--radius-2xl);
@@ -77,7 +79,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover;
             z-index: 0;
-            opacity: 0.55;
+            opacity: 0.45;
             transition: transform 10s ease;
         }
 
@@ -97,42 +99,9 @@
             top: 0; left: 0; width: 100%; height: 4px;
             background: linear-gradient(90deg, var(--color-primary-orange), var(--color-primary-red));
         }
-
-        /* Form elements matching simple brand style */
-        .form-group {
-            margin-bottom: var(--space-lg);
-        }
-
-        .form-label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #1E1E1E;
-            font-size: 0.95rem;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 14px 16px;
-            border-radius: var(--radius-lg);
-            border: 1px solid rgba(0,0,0,0.1);
-            background: #F9F9F9;
-            font-family: inherit;
-            font-size: 1rem;
-            color: #111;
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: var(--color-primary-orange);
-            background: #FFF;
-            box-shadow: 0 4px 15px rgba(247, 147, 30, 0.1);
-        }
-
-        textarea.form-input {
-            resize: vertical;
-            min-height: 120px;
+        
+        .donate-paypal-card::before {
+            background: linear-gradient(90deg, #003087, #009cde); /* PayPal Colors */
         }
 
         /* Standard Bento Cards for Info */
@@ -147,6 +116,7 @@
             transition: transform 0.3s ease;
             height: 100%;
             border: 1px solid rgba(0,0,0,0.02);
+            flex-direction: column;
         }
 
         .info-card:hover {
@@ -155,11 +125,12 @@
         }
 
         .ic-icon {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--color-primary-blue);
             background: rgba(46, 49, 146, 0.05);
-            padding: 12px;
+            padding: 16px;
             border-radius: var(--radius-lg);
+            margin-bottom: 8px;
         }
 
         .ic-icon.orange {
@@ -173,25 +144,43 @@
         }
 
         .info-card h4 {
-            font-size: 1.25rem;
+            font-size: 1.4rem;
             color: #1E1E1E;
             margin-bottom: 8px;
+            font-weight: 800;
         }
 
-        .info-card p, .info-card a {
+        .info-card p {
             color: var(--color-text-gray);
-            font-size: 1.05rem;
-            line-height: 1.5;
-            text-decoration: none;
-        }
-
-        .info-card a {
-            font-weight: 600;
-            transition: color 0.3s ease;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
         
-        .info-card a:hover {
-            color: var(--color-primary-orange);
+        .bank-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            width: 100%;
+        }
+        
+        .bank-detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .bank-label {
+            font-weight: 600;
+            color: #111;
+            font-size: 0.95rem;
+        }
+        
+        .bank-value {
+            font-family: 'Inter', monospace;
+            color: var(--color-primary-blue);
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-align: right;
         }
         
         /* Vibrant Brand Colored Info Cards */
@@ -258,10 +247,16 @@
                 align-items: flex-start;
                 gap: 12px;
             }
-            .map-bento {
-                height: 300px;
+            .bank-detail-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+            .bank-value {
+                text-align: left;
             }
         }
+
     </style>
 </head>
 <body>
@@ -284,11 +279,11 @@
                 <a href="volunteer.html" class="nav-link">Volunteer</a>
                 <a href="partnership.html" class="nav-link">Partnerships</a>
                 <a href="about.html" class="nav-link">About Us</a>
-                <a href="contact.html" class="nav-link" style="color: var(--color-primary-orange);">Contact Us</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
             </nav>
             
             <div style="display:flex; gap: 12px; align-items: center;">
-                <a href="donate.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">
+                <a href="donate.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem; background: var(--color-primary-orange); border-color: var(--color-primary-orange); color: #000;">
                     Donate <i class="ph-bold ph-heart"></i>
                 </a>
                 <button class="mobile-toggle" aria-label="Toggle Menu">
@@ -327,82 +322,72 @@
                 </section>
             </div>
 
+            
             <section class="section" style="padding-top: 0;">
                 <div class="container">
                     
-                    <!-- Split Section: Contact Info (Left) and Form (Right) -->
-                    <div class="contact-split">
+                    <div style="text-align: center; margin-bottom: var(--space-2xl);">
+                        <h2 style="font-size: 2.2rem; font-weight: 800; color: #1E1E1E;">Choose Your Method</h2>
+                        <p style="color: #444; font-size: 1.1rem; max-width: 500px; margin: 12px auto 0;">100% of your contribution goes directly to funding frontline relief operations and prevention frameworks across Uganda.</p>
+                    </div>
+                    
+                    <!-- Split Section: Bank Info (Left) and PayPal (Right) -->
+                    <div class="contact-split" style="max-width: 1000px; margin: 0 auto var(--space-3xl);">
                         
-                        <!-- Left side: Contact Detail Boxes -->
-                        <div class="contact-details">
-                            <div style="display: flex; flex-direction: column; gap: 24px;">
-                                
-                                <div class="info-card blue reveal">
-                                    <i class="ph-fill ph-map-pin ic-icon"></i>
-                                    <div>
-                                        <h4>Headquarters</h4>
-                                        <p>123 Resilience Way<br>Kampala, Uganda 45001</p>
-                                    </div>
+                        <!-- Left Side: Bank Details -->
+                        <div class="contact-card-bento reveal" style="padding: var(--space-2xl);">
+                            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+                                <div class="ic-icon" style="margin: 0; padding: 12px; font-size: 1.8rem;"><i class="ph-bold ph-bank"></i></div>
+                                <div>
+                                    <h3 style="font-size: 1.5rem; margin-bottom: 4px; color: #1E1E1E;">Bank Transfer</h3>
+                                    <p style="color: var(--color-text-gray); font-size: 0.95rem; margin: 0;">Direct wire to our foundational account.</p>
                                 </div>
-
-                                <div class="info-card orange reveal" style="transition-delay: 0.1s;">
-                                    <i class="ph-fill ph-envelope-simple ic-icon"></i>
-                                    <div>
-                                        <h4>Direct Email</h4>
-                                        <a href="mailto:hello@firevictimfriends.org">hello@firevictimfriends.org</a><br>
-                                        <a href="mailto:grants@firevictimfriends.org">grants@firevictimfriends.org</a>
-                                    </div>
+                            </div>
+                            
+                            <div style="background: rgba(0,0,0,0.02); border-radius: var(--radius-xl); padding: 24px; border: 1px solid rgba(0,0,0,0.05); flex-grow: 1;">
+                                <div class="bank-detail-row">
+                                    <span class="bank-label">Bank Name</span>
+                                    <span class="bank-value">Opportunity Bank</span>
                                 </div>
-
-                                <div class="info-card teal reveal" style="transition-delay: 0.2s;">
-                                    <i class="ph-fill ph-headset ic-icon"></i>
-                                    <div>
-                                        <h4>Command Center</h4>
-                                        <a href="tel:+256123456789">+256 (0) 123 456 789</a><br>
-                                        <span style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">Operates M-F, 9am - 5pm EAT</span>
-                                    </div>
+                                <div class="bank-detail-row">
+                                    <span class="bank-label">Account Name</span>
+                                    <span class="bank-value">FIRE VICTIM FRIENDS</span>
                                 </div>
-
+                                <div class="bank-detail-row">
+                                    <span class="bank-label">Account Number</span>
+                                    <span class="bank-value" style="font-size: 1.25rem;">1325508115137</span>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Right Side: Clean Form Bento Card -->
-                        <div class="contact-card-bento reveal" style="transition-delay: 0.2s;">
-                            <h3 style="font-size: 1.8rem; margin-bottom: 32px; color: #1E1E1E;">Send a Transmission</h3>
+                        <!-- Right Side: PayPal Block -->
+                        <div class="contact-card-bento donate-paypal-card reveal" style="transition-delay: 0.2s; padding: var(--space-2xl);">
+                            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+                                <div class="ic-icon" style="margin: 0; padding: 12px; font-size: 1.8rem; background: rgba(0, 156, 222, 0.1); color: #009cde;"><i class="ph-bold ph-paypal-logo"></i></div>
+                                <div>
+                                    <h3 style="font-size: 1.5rem; margin-bottom: 4px; color: #1E1E1E;">PayPal Connection</h3>
+                                    <p style="color: var(--color-text-gray); font-size: 0.95rem; margin: 0;">Fast, secure online contribution.</p>
+                                </div>
+                            </div>
                             
-                            <form action="#" method="POST">
-                                <div class="form-group">
-                                    <label for="name" class="form-label">Full Name / Organization</label>
-                                    <input type="text" id="name" class="form-input" placeholder="e.g. John Doe">
+                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: rgba(0,0,0,0.02); border-radius: var(--radius-xl); padding: 32px 24px; border: 1px solid rgba(0,0,0,0.05); flex-grow: 1; text-align: center;">
+                                <div style="margin-bottom: 24px;">
+                                    <i class="ph-fill ph-shield-check" style="color: #009cde; font-size: 3rem; margin-bottom: 12px; display: block;"></i>
+                                    <p style="color: #444; font-size: 0.95rem;">You will be securely redirected to our official PayPal portal.</p>
                                 </div>
                                 
-                                <div class="form-group">
-                                    <label for="email" class="form-label">Email Address</label>
-                                    <input type="email" id="email" class="form-input" placeholder="john@example.com">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="message" class="form-label">How can we collaborate?</label>
-                                    <textarea id="message" class="form-input" placeholder="Write your inquiry details here..."></textarea>
-                                </div>
-                                
-                                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 16px; font-size: 1.05rem;">
-                                    Send Message <i class="ph-bold ph-paper-plane-tilt"></i>
-                                </button>
-                            </form>
+                                <!-- Placeholder PayPal Button. User can swap out the href -->
+                                <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 16px; font-size: 1.05rem; background: #0070ba; border-color: #0070ba; color: white;">
+                                    <i class="ph-bold ph-paypal-logo"></i> Donate via PayPal
+                                </a>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Clean Google Map Bento -->
-                    <div class="map-wrapper reveal">
-                        <h2 style="font-size: 1.8rem; margin-bottom: 24px; color: #1E1E1E;">Find Us Locally</h2>
-                        <div class="map-bento">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127641.1764654929!2d32.49307779774619!3d0.31357608240411804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbb0f51509de1%3A0xea12334542674d8c!2sKampala%2C%20Uganda!5e0!3m2!1sen!2sus!4v1714578166542!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
+                        
                     </div>
 
                 </div>
             </section>
+
         </main>
 
         <!-- Awwwards-Level Premium Footer -->
